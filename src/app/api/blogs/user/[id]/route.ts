@@ -1,9 +1,12 @@
 import { prisma } from "@/server/db";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { id: string } },
+) {
   try {
-    const { id } = await req.json();
+    const id = params.id;
     const blogs = await prisma.blog.findMany({
       where: {
         authorId: id,
