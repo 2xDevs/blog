@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-    id     Int     @id @default(autoincrement())
+    id     String  @id @default(cuid())
     email  String  @unique
     avatar String?
     name   String?
@@ -16,13 +16,16 @@ model User {
 }
 
 model Blog {
-    id            Int    @id @default(autoincrement())
-    authorId      Int
-    image         String
-    title         String
-    content       String
-    author        User   @relation(fields: [authorId], references: [id])
-    publishedDate String
+    id        Int      @id @default(autoincrement())
+    authorId  String
+    image     String
+    title     String
+    content   String
+    author    User     @relation(fields: [authorId], references: [id])
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
     @@unique([authorId])
+    @@index([authorId])
+    @@index([createdAt])
 }
