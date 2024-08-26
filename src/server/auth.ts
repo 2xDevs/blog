@@ -1,14 +1,12 @@
-import { PrismaAdapter } from "@auth/prisma-adapter";
 import {
   getServerSession,
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
-import { type Adapter } from "next-auth/adapters";
-import DiscordProvider from "next-auth/providers/discord";
+import GoogleProvider from "next-auth/providers/google";
 
 import { env } from "@/env";
-import { db } from "@/server/db";
+import prisma from "prisma/src";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -38,19 +36,49 @@ declare module "next-auth" {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
-      },
-    }),
+    async signIn({ account, profile }: any) {
+      console.log(account, profile);
+      if (account.provider === "google") {
+        const existingUser = await prisma.user.findFirst({
+          where: {
+            email: profile.email,
+          },
+        });
+
+        if (existingUser) {
+          return true;
+        }
+
+        try {
+          console.log("inside try");
+
+          await prisma.user.create({
+            data: {
+              name: profile.name,
+              email: profile.email,
+              avatar: profile.picture,
+            },
+          });
+
+          return true;
+        } catch (e) {
+          console.error(e);
+          return false;
+        }
+      }
+      return true;
+    },
+
+    session({ token, session }: any) {
+      session.user.id = token.sub;
+
+      return session;
+    },
   },
-  adapter: PrismaAdapter(db) as Adapter,
   providers: [
-    DiscordProvider({
-      clientId: env.DISCORD_CLIENT_ID,
-      clientSecret: env.DISCORD_CLIENT_SECRET,
+    GoogleProvider({
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
     }),
     /**
      * ...add more providers here.
@@ -62,6 +90,7 @@ export const authOptions: NextAuthOptions = {
      * @see https://next-auth.js.org/providers/github
      */
   ],
+  secret: process.env.NEXTAUTH_SECRET || "secr3t",
 };
 
 /**
