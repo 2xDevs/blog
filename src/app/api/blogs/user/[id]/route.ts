@@ -15,6 +15,9 @@ export async function GET(
         createdAt: "desc",
       },
     });
+    if (blogs.length == 0) {
+      return NextResponse.json({ error: "Blogs Not Found" }, { status: 404 });
+    }
     return NextResponse.json(blogs, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: "Failed to Get blogs" }, { status: 500 });
