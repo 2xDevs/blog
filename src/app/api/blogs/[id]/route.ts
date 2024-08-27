@@ -1,25 +1,27 @@
 import { prisma } from "@/server/db";
 import { NextRequest, NextResponse } from "next/server";
 
+const parseId = (id: string) => Number(id);
+
 export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } },
 ) {
   try {
-    const id = Number(params.id);
+    const id = parseId(params.id);
     const blog = await prisma.blog.findUnique({
-      where: {
-        id,
-      },
+      where: { id },
       include: {
         author: {
-          select: {
-            name: true,
-            avatar: true,
-          },
+          select: { name: true, avatar: true },
         },
       },
     });
+
+    if (!blog) {
+      return NextResponse.json({ error: "Blog not found" }, { status: 404 });
+    }
+
     return NextResponse.json(blog, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: "Failed to Get blog" }, { status: 500 });
@@ -31,19 +33,27 @@ export async function PATCH(
   { params }: { params: { id: string } },
 ) {
   try {
-    const id = Number(params.id);
-    const { title, content, image } = await req.json();
+    const id = parseId(params.id);
+    const {
+      authorId,
+      title,
+      content,
+      image,
+    }: { authorId: string; title?: string; content?: string; image?: string } =
+      await req.json();
+    if (!authorId) {
+      return NextResponse.json({ error: "Missing credentials" });
+    }
     const updatedBlog = await prisma.blog.update({
-      where: {
-        id,
-      },
+      where: { id, authorId },
       data: {
         title,
         content,
         image,
       },
     });
-    return NextResponse.json(updatedBlog, { status: 201 });
+
+    return NextResponse.json(updatedBlog, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to Update blog" },
@@ -57,13 +67,19 @@ export async function DELETE(
   { params }: { params: { id: string } },
 ) {
   try {
-    const id = Number(params.id);
+    const id = parseId(params.id);
+    const { authorId }: { authorId: string } = await req.json();
+    if (!authorId) {
+      return NextResponse.json({ error: "Missing credentials" });
+    }
     await prisma.blog.delete({
-      where: {
-        id,
-      },
+      where: { id, authorId },
     });
-    return NextResponse.json({ message: "Blog Deleted Sucessfully" });
+
+    return NextResponse.json(
+      { message: "Blog Deleted Successfully" },
+      { status: 200 },
+    );
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to delete blog" },
