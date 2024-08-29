@@ -1,14 +1,12 @@
 import { prisma } from "@/server/db";
 import { NextRequest, NextResponse } from "next/server";
 
-const parseId = (id: string) => Number(id);
-
 export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } },
 ) {
   try {
-    const id = parseId(params.id);
+    const id = params.id;
     const blog = await prisma.blog.findUnique({
       where: { id },
       include: {
@@ -33,7 +31,7 @@ export async function PATCH(
   { params }: { params: { id: string } },
 ) {
   try {
-    const id = parseId(params.id);
+    const id = params.id;
     const {
       authorId,
       title,
@@ -67,7 +65,7 @@ export async function DELETE(
   { params }: { params: { id: string } },
 ) {
   try {
-    const id = parseId(params.id);
+    const id = params.id;
     const { authorId }: { authorId: string } = await req.json();
     if (!authorId) {
       return NextResponse.json({ error: "Missing credentials" });

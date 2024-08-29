@@ -2,10 +2,15 @@ import { ThemeProvider } from "@/app/providers/ThemeProviders";
 import "@/styles/globals.css";
 import "./prosemirror.css";
 
-import { GeistSans } from "geist/font/sans";
-import { Inter } from "next/font/google";
+import { Inter as FontSans } from "next/font/google";
 import { type Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
+import { cn } from "@/lib/utils";
+
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -18,8 +23,13 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
-      <body>
+    <html lang="en">
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable,
+        )}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
