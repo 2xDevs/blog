@@ -1,5 +1,5 @@
 "use client";
-import { defaultValue } from "@/app/default-value";
+import { blog1, defaultValue } from "@/app/default-value";
 import Editor from "@/components/editor/advanced-editor";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { blogsData } from "@/test/data";
@@ -9,7 +9,7 @@ import { JSONContent } from "novel";
 import { useState } from "react";
 
 const Blog = ({ params }: { params: { id: string } }) => {
-  const [value, setValue] = useState<JSONContent>(defaultValue);
+  const [value, setValue] = useState<JSONContent>(blog1);
   const blog = blogsData.filter((blog) => blog.id.toString() === params.id)[0];
 
   if (!blog) {
@@ -17,6 +17,7 @@ const Blog = ({ params }: { params: { id: string } }) => {
       <div> Error fetching blog or no blod available with id: {params.id} </div>
     );
   }
+  console.log(value);
   return (
     <div className="mx-auto mb-8 flex max-w-6xl flex-col space-y-4 px-4 pt-8 sm:px-8">
       <Link

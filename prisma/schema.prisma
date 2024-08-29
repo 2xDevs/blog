@@ -16,7 +16,7 @@ model User {
 }
 
 model Blog {
-    id        Int      @id @default(autoincrement())
+    id        String   @id @default(cuid())
     authorId  String
     image     String
     title     String
