@@ -36,7 +36,7 @@ const Editor = ({ initialValue, onChange }: EditorProp) => {
   return (
     <EditorRoot>
       <EditorContent
-        editable={false}
+        editable={true}
         immediatelyRender={false}
         className="mx-auto w-full max-w-screen-lg"
         {...(initialValue && { initialContent: initialValue })}
