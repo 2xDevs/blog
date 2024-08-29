@@ -62,6 +62,8 @@
 @layer base {
   * {
     @apply border-border;
+    /* scrollbar-gutter: stable; */
+    -ms-overflow-style: none;
   }
   body {
     @apply bg-background text-foreground;

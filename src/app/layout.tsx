@@ -1,9 +1,11 @@
 import { ThemeProvider } from "@/app/providers/ThemeProviders";
 import "@/styles/globals.css";
+import "./prosemirror.css";
 
 import { GeistSans } from "geist/font/sans";
 import { Inter } from "next/font/google";
 import { type Metadata } from "next";
+import { Navbar } from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -24,6 +26,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Navbar />
           {children}
         </ThemeProvider>
       </body>

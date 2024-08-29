@@ -6,7 +6,7 @@ export const Navbar = () => {
   return (
     <>
       <section
-        className="stycky left-0 right-0 top-0 z-50 flex justify-around border-b px-6 py-4"
+        className="sticky left-0 right-0 top-0 z-50 mx-auto flex max-w-6xl justify-between border-b bg-background px-6 py-4"
         id="Navbar"
       >
         <Link href="/" className="text-2xl font-bold leading-normal">
@@ -17,7 +17,7 @@ export const Navbar = () => {
             className="text-lg font-semibold"
             href="https://github.com/2xdevs/blog"
           >
-            <GitHubLogoIcon className="h-8 w-8" />
+            <GitHubLogoIcon className="h-6 w-6" />
           </Link>
           <ModeToggle />
         </nav>

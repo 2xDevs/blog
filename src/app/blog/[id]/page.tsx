@@ -1,8 +1,13 @@
+"use client";
+import { defaultValue } from "@/app/default-value";
+import Editor from "@/components/editor/advanced-editor";
 import { blogsData } from "@/test/data";
-import { ChevronRightIcon } from "@radix-ui/react-icons";
-import Link from "next/link";
+import { AvatarIcon, ChevronRightIcon } from "@radix-ui/react-icons";
+import { JSONContent } from "novel";
+import { useState } from "react";
 
 const Blog = ({ params }: { params: { id: string } }) => {
+  const [value, setValue] = useState<JSONContent>(defaultValue);
   const blog = blogsData.filter((blog) => blog.id.toString() === params.id)[0];
 
   if (!blog) {
@@ -10,36 +15,31 @@ const Blog = ({ params }: { params: { id: string } }) => {
       <div> Error fetching blog or no blod available with id: {params.id} </div>
     );
   }
-
   return (
-    <div className="flex h-52 gap-16">
-      <div className="w-32 pt-5">
-        {new Date(blog.createdAt).toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-        })}
-      </div>
-      <div className="relative flex h-full justify-center pt-7">
-        <div className="h-3 w-3 rounded-full bg-primary"></div>
-        <hr className="absolute left-1/2 h-full w-[1px] -translate-x-1/2 border-none bg-primary" />
-      </div>
-      <div className="h-full w-full">
-        <Link href={`/blog/${blog.id}`}>
-          <div className="space-y-3 rounded-2xl px-8 py-5 hover:bg-muted">
-            <h3 className="text-2xl font-semibold leading-normal">
-              {blog.title}
-            </h3>
-            <p className="line-clamp-2 text-lg text-secondary-foreground">
-              {blog.content}
-            </p>
-            <div className="flex items-center gap-1 text-primary">
-              <p className="text-base leading-normal">Read more</p>
-              <ChevronRightIcon />
-            </div>
+    <div className="mx-auto mb-8 flex max-w-screen-lg flex-col space-y-5 px-4 pt-16 sm:px-8">
+      <div className="space-y-2">
+        <div className="text-xs text-muted-foreground">
+          {new Date(blog.createdAt).toLocaleDateString("en-US", {
+            weekday: "long",
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+        </div>
+        <h1 className="text-4xl font-semibold leading-normal">{blog.title}</h1>
+        <div className="flex gap-2">
+          <AvatarIcon className="h-10 w-10" />
+          <div className="">
+            <p className="text-sm font-semibold">{blog.author}</p>
+            <p className="text-sm text-primary">@{blog.author}</p>
           </div>
-        </Link>
+        </div>
       </div>
+      <div className="not-prose relative my-12 overflow-hidden rounded-2xl pb-5 first:mt-0 last:mb-0 [a:not(:first-child)>&]:mt-12 [a:not(:last-child)>&]:mb-12 [figure>&]:my-0">
+        <img src={blog.image} alt="Blog Image" />
+        <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-slate-900/10 dark:ring-white/10"></div>
+      </div>
+      <Editor initialValue={value} onChange={setValue} />
     </div>
   );
 };
