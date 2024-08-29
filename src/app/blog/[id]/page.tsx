@@ -1,8 +1,10 @@
 "use client";
 import { defaultValue } from "@/app/default-value";
 import Editor from "@/components/editor/advanced-editor";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { blogsData } from "@/test/data";
-import { AvatarIcon, ChevronRightIcon } from "@radix-ui/react-icons";
+import { ChevronLeftIcon } from "lucide-react";
+import Link from "next/link";
 import { JSONContent } from "novel";
 import { useState } from "react";
 
@@ -16,7 +18,14 @@ const Blog = ({ params }: { params: { id: string } }) => {
     );
   }
   return (
-    <div className="mx-auto mb-8 flex max-w-screen-lg flex-col space-y-5 px-4 pt-16 sm:px-8">
+    <div className="mx-auto mb-8 flex max-w-screen-lg flex-col space-y-5 px-4 pt-10 sm:px-8">
+      <Link
+        href={"/"}
+        className="-ml-3 mb-5 flex w-fit items-center text-sm font-semibold text-slate-700 hover:text-slate-900 dark:text-slate-200 dark:hover:text-white"
+      >
+        <ChevronLeftIcon className="h-4" />
+        Go Back
+      </Link>
       <div className="space-y-2">
         <div className="text-xs text-muted-foreground">
           {new Date(blog.createdAt).toLocaleDateString("en-US", {
@@ -28,14 +37,22 @@ const Blog = ({ params }: { params: { id: string } }) => {
         </div>
         <h1 className="text-4xl font-semibold leading-normal">{blog.title}</h1>
         <div className="flex gap-2">
-          <AvatarIcon className="h-10 w-10" />
+          <Avatar>
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>
+              {blog.author
+                .split(" ")
+                .map((word) => word.charAt(0))
+                .join("")}
+            </AvatarFallback>
+          </Avatar>
           <div className="">
             <p className="text-sm font-semibold">{blog.author}</p>
             <p className="text-sm text-primary">@{blog.author}</p>
           </div>
         </div>
       </div>
-      <div className="not-prose relative my-12 overflow-hidden rounded-2xl pb-5 first:mt-0 last:mb-0 [a:not(:first-child)>&]:mt-12 [a:not(:last-child)>&]:mb-12 [figure>&]:my-0">
+      <div className="not-prose relative my-12 overflow-hidden rounded-2xl py-5 first:mt-0 last:mb-0 [a:not(:first-child)>&]:mt-12 [a:not(:last-child)>&]:mb-12 [figure>&]:my-0">
         <img src={blog.image} alt="Blog Image" />
         <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-slate-900/10 dark:ring-white/10"></div>
       </div>

@@ -872,14 +872,6 @@ export const defaultValue = {
             },
           ],
         },
-        {
-          type: "listItem",
-          content: [
-            {
-              type: "paragraph",
-            },
-          ],
-        },
       ],
     },
   ],
