@@ -27,8 +27,9 @@ const extensions = [...defaultExtensions, slashCommand];
 interface EditorProp {
   initialValue?: JSONContent;
   onChange: (value: JSONContent) => void;
+  editable: boolean;
 }
-const Editor = ({ initialValue, onChange }: EditorProp) => {
+const Editor = ({ initialValue, onChange, editable }: EditorProp) => {
   const [openNode, setOpenNode] = useState(false);
   const [openColor, setOpenColor] = useState(false);
   const [openLink, setOpenLink] = useState(false);
@@ -36,7 +37,7 @@ const Editor = ({ initialValue, onChange }: EditorProp) => {
   return (
     <EditorRoot>
       <EditorContent
-        editable={true}
+        editable={editable}
         immediatelyRender={false}
         className="mx-auto w-full max-w-screen-lg"
         {...(initialValue && { initialContent: initialValue })}
