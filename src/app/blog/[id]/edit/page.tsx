@@ -1,6 +1,7 @@
 "use client";
 import { blog1, defaultValue } from "@/app/default-value";
 import Editor from "@/components/editor/advanced-editor";
+import imageUploader, { ImageUploader } from "@/components/ImageUploader";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { blogsData } from "@/test/data";
 import { ChevronLeftIcon } from "lucide-react";
@@ -36,9 +37,11 @@ const Blog = ({ params }: { params: { id: string } }) => {
               day: "numeric",
             })}
           </div>
-          <h1 className="text-display-5 font-semibold leading-normal lg:text-4xl">
-            {blog.title}
-          </h1>
+          <input
+            type="text"
+            className="bg-none text-display-5 font-semibold leading-normal lg:text-4xl"
+            defaultValue={blog.title}
+          />
           <div className="flex gap-2">
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" />
@@ -55,11 +58,8 @@ const Blog = ({ params }: { params: { id: string } }) => {
             </div>
           </div>
         </div>
-        <div className="not-prose relative my-10 overflow-hidden rounded-2xl first:mt-0 last:mb-0 [a:not(:first-child)>&]:mt-10 [a:not(:last-child)>&]:mb-10 [figure>&]:my-0">
-          <img src={blog.image} alt="Blog Image" />
-          <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-slate-900/10 dark:ring-white/10"></div>
-        </div>
-        <Editor editable={false} initialValue={value} onChange={setValue} />
+        <ImageUploader imageLink={blog.image} />
+        <Editor editable={true} initialValue={value} onChange={setValue} />
       </div>
     </div>
   );

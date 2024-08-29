@@ -1356,9 +1356,6 @@ export const blog1 = {
       ],
     },
     {
-      type: "horizontalRule",
-    },
-    {
       type: "heading",
       attrs: {
         level: 2,
@@ -1443,9 +1440,7 @@ export const blog1 = {
         },
       ],
     },
-    {
-      type: "horizontalRule",
-    },
+
     {
       type: "paragraph",
       content: [
@@ -4069,9 +4064,7 @@ export const blog4 = {
         },
       ],
     },
-    {
-      type: "horizontalRule",
-    },
+
     {
       type: "heading",
       attrs: {
@@ -11394,9 +11387,7 @@ export const blog8 = {
         },
       ],
     },
-    {
-      type: "horizontalRule",
-    },
+
     {
       type: "heading",
       attrs: {
@@ -11740,9 +11731,7 @@ export const blog8 = {
         },
       ],
     },
-    {
-      type: "horizontalRule",
-    },
+
     {
       type: "heading",
       attrs: {
