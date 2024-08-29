@@ -18,6 +18,18 @@ const config = {
       },
     },
     extend: {
+      fontSize: {
+        "display-1": "calc(1.625rem + 4.5vw)",
+        "display-2": "calc(1.575rem + 3.9vw)",
+        "display-3": "calc(1.525rem + 3.3vw)",
+        "display-4": "calc(1.475rem + 2.7vw)",
+        "display-5": "calc(1.425rem + 2.1vw)",
+        "display-6": "calc(1.375rem + 1.6vw)",
+        "fs-1": "calc(1.375rem + 1.5vw)",
+        "fs-2": "calc(1.325rem + .9vw)",
+        "fs-3": "calc(1.3rem + .6vw)",
+        "fs-4": "calc(1.275rem + .3vw)",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
