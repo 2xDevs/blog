@@ -1,7 +1,8 @@
 "use client";
-import { blog1, defaultValue } from "@/app/default-value";
+import { blog1 } from "@/app/default-value";
 import Editor from "@/components/editor/advanced-editor";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { buttonVariants } from "@/components/ui/button";
 import { blogsData } from "@/test/data";
 import { ChevronLeftIcon } from "lucide-react";
 import Link from "next/link";
@@ -19,13 +20,19 @@ const Blog = ({ params }: { params: { id: string } }) => {
   }
   return (
     <div className="mx-auto mb-8 flex max-w-6xl flex-col space-y-4 px-4 pt-8 sm:px-8">
-      <Link
-        href={"/"}
-        className="mb-4 flex w-fit items-center text-sm font-semibold text-slate-700 hover:text-slate-900 dark:text-slate-200 dark:hover:text-white"
-      >
-        <ChevronLeftIcon className="-ml-2 h-4 sm:-ml-4" />
-        Go Back
-      </Link>
+      <div className="mb-4 flex max-h-fit items-center justify-between">
+        <Link
+          href={"/"}
+          className="flex h-fit w-fit items-center text-sm font-semibold text-slate-700 hover:text-slate-900 dark:text-slate-200 dark:hover:text-white"
+        >
+          <ChevronLeftIcon className="-ml-2 h-4 sm:-ml-4" />
+          Go Back
+        </Link>
+        <Link className={buttonVariants()} href={`/blog/${blog.id}/edit`}>
+          Edit blog
+        </Link>
+      </div>
+
       <div className="mx-auto max-w-3xl">
         <div className="space-y-4">
           <div className="text-xs text-muted-foreground">

@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@/app/providers/ThemeProviders";
+import { ThemeProvider } from "@/providers/ThemeProviders";
 import "@/styles/globals.css";
 import "@/styles/prosemirror.css";
 

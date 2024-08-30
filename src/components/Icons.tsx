@@ -8,6 +8,7 @@ export const Icons = {
       xmlns="http://www.w3.org/2000/svg"
       width="500"
       height="500"
+      viewBox="0 0 500 500"
     >
       <path
         d="M0 0 C165 0 330 0 500 0 C500 165 500 330 500 500 C335 500 170 500 0 500 C0 335 0 170 0 0 Z "

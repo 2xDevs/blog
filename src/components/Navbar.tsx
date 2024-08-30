@@ -1,3 +1,4 @@
+import { Icons } from "@/components/Icons";
 import { ModeToggle } from "@/components/ModeToggle";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
@@ -33,13 +34,15 @@ export const Navbar = () => {
           </picture>
         </div>
       </div>
-      <section
+      <header
         className="sticky left-0 right-0 top-0 z-50 border-b py-4 backdrop-blur-md"
         id="Navbar"
       >
         <div className="mx-auto flex max-w-6xl justify-between px-6">
-          <Link href="/" className="text-2xl font-bold leading-normal">
-            2xdevs logo
+          <Link href="/">
+            <div className="flex gap-2">
+              <Icons.logo className="h-10 w-10 bg-background" />
+            </div>
           </Link>
           <nav className="flex h-fit items-center gap-4">
             <Link
@@ -51,7 +54,7 @@ export const Navbar = () => {
             <ModeToggle />
           </nav>
         </div>
-      </section>
+      </header>
     </>
   );
 };

@@ -3,7 +3,6 @@ import { blog1 } from "@/app/default-value";
 import Editor from "@/components/editor/advanced-editor";
 import { ImageUploader } from "@/components/ImageUploader";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Textarea } from "@/components/ui/textarea";
 import { blogsData } from "@/test/data";
 import { ChevronLeftIcon } from "lucide-react";
 import Link from "next/link";
@@ -21,7 +20,7 @@ const Blog = ({ params }: { params: { id: string } }) => {
   }
 
   const autoGrow = (element: HTMLTextAreaElement) => {
-    element.style.height = "auto";
+    element.style.height = "5px";
     element.style.height = `${element.scrollHeight}px`;
   };
   return (
@@ -43,13 +42,13 @@ const Blog = ({ params }: { params: { id: string } }) => {
               day: "numeric",
             })}
           </div>
-          <Textarea
-            className="max-h-fit resize-none rounded-none border-none bg-transparent text-display-5 font-semibold leading-normal ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 lg:text-4xl"
-            placeholder="Untitled"
-            rows={1}
-            onInput={(e) => autoGrow(e.target as HTMLTextAreaElement)}
-            defaultValue={blog.title}
-          />
+          <div
+            aria-placeholder="Untitled"
+            className="py-2 text-display-5 font-bold text-foreground ring-0 focus-visible:outline-0 aria-[placeholder]:text-muted-foreground lg:text-4xl"
+            contentEditable
+          >
+            {blog.title}
+          </div>
           <div className="flex gap-2">
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" />

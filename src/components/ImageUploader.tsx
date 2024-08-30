@@ -73,16 +73,9 @@ export const ImageUploader = ({ imageLink }: { imageLink: string }) => {
             <Button
               variant={"default"}
               onClick={() => setShowUploader(true)}
-              className="absolute bottom-4 left-4"
+              className="absolute right-4 top-4"
             >
               Edit
-            </Button>
-            <Button
-              variant={"destructive"}
-              onClick={handleDeleteClick}
-              className="absolute bottom-4 right-4"
-            >
-              Delete
             </Button>
           </div>
           <Dialog open={showUploader}>
@@ -104,6 +97,7 @@ export const ImageUploader = ({ imageLink }: { imageLink: string }) => {
                       <Label htmlFor="file">Upload Image</Label>
                       <div className="mt-1 flex items-center">
                         <Input
+                          className="mr-4 block h-fit w-full border-none px-0 text-sm text-card-foreground file:mr-4 file:rounded-full file:bg-primary file:px-4 file:py-2 file:font-semibold file:text-primary-foreground hover:file:bg-primary/90"
                           onChange={handleFileUpload}
                           id="file"
                           ref={fileInputRef}
@@ -134,45 +128,6 @@ export const ImageUploader = ({ imageLink }: { imageLink: string }) => {
               </DialogHeader>
             </DialogContent>
           </Dialog>
-        </div>
-      )}
-      {!imageUrl && !showUploader && (
-        <div className="mt-4 flex aspect-video w-full items-center justify-center rounded-2xl bg-accent">
-          <Card className="w-full max-w-md p-6 shadow-lg">
-            <h2 className="mb-4 text-2xl font-bold">Image Uploader</h2>
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="file">Upload Image</Label>
-                <div className="mt-1 flex items-center">
-                  <Input
-                    id="file"
-                    onChange={handleFileUpload}
-                    ref={fileInputRef}
-                    className="mr-4 block h-fit w-full border-none px-0 text-sm text-card-foreground file:mr-4 file:rounded-full file:bg-primary file:px-4 file:py-2 file:font-semibold file:text-primary-foreground hover:file:bg-primary/90"
-                    type="file"
-                  />
-                </div>
-              </div>
-              <div>
-                <Label htmlFor="url">Or enter an image URL</Label>
-                <div className="mt-1 flex items-center">
-                  <Input
-                    id="url"
-                    type="text"
-                    onChange={(e) => setUrlInput(e.target.value)}
-                    placeholder="https://example.com/image.jpg"
-                  />
-                </div>
-              </div>
-              <Button
-                onClick={handleUrlUpload}
-                className="w-full"
-                type="button"
-              >
-                Upload
-              </Button>
-            </div>
-          </Card>
         </div>
       )}
     </div>
