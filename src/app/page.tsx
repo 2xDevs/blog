@@ -1,10 +1,18 @@
 import { Blogs } from "@/components/Blogs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { blogsData } from "@/test/data";
 import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 
-export default function HomePage() {
+async function fetchAllBlogs() {
+  const responce = await fetch("http://localhost:3000/api/blogs");
+  if (!responce.ok) {
+    throw new Error("Failed to fetch blogs");
+  }
+  return responce.json();
+}
+
+export default async function HomePage() {
+  const blogs = await fetchAllBlogs();
   return (
     <main className="">
       <section id="Hero" className="max-w-6xl px-4 py-16 sm:mx-auto">
@@ -27,8 +35,8 @@ export default function HomePage() {
                     type="email"
                     required
                     autoComplete="email"
+                    className="bg-secondary pl-12 placeholder:text-slate-500 focus-visible:ring-offset-0"
                     aria-label="Email address"
-                    className="block w-full appearance-none rounded-md border border-transparent bg-white py-2 pl-12 pr-3 leading-5 text-slate-900 shadow ring-1 ring-slate-900/5 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500 dark:bg-slate-700/20 dark:text-white dark:ring-slate-200/20 dark:focus:ring-sky-500 sm:text-sm"
                     placeholder="Subscribe via email"
                   />
                 </div>
@@ -42,7 +50,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <Blogs blogs={blogsData} />
+      <Blogs blogs={blogs} />
     </main>
   );
 }
