@@ -32,7 +32,15 @@ export const Blogs = ({ blogs }: { blogs: BlogProps[] }) => {
                     {blog.title}
                   </h3>
                   <p className="line-clamp-2 text-lg text-secondary-foreground">
-                    {blog.content}
+                    {blog.content.content
+                      .filter((item) => item.type === "paragraph")
+                      .slice(0, 5)
+                      .map((paragraph) =>
+                        paragraph.content
+                          .map((contentItem) => contentItem.text)
+                          .join(" "),
+                      )
+                      .join("\n\n")}
                   </p>
                   <div className="flex items-center gap-1 text-primary">
                     <p className="text-base leading-normal">Read more</p>
