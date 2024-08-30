@@ -1,8 +1,9 @@
 "use client";
-import { blog1, defaultValue } from "@/app/default-value";
+import { blog1 } from "@/app/default-value";
 import Editor from "@/components/editor/advanced-editor";
-import imageUploader, { ImageUploader } from "@/components/ImageUploader";
+import { ImageUploader } from "@/components/ImageUploader";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Textarea } from "@/components/ui/textarea";
 import { blogsData } from "@/test/data";
 import { ChevronLeftIcon } from "lucide-react";
 import Link from "next/link";
@@ -15,9 +16,14 @@ const Blog = ({ params }: { params: { id: string } }) => {
 
   if (!blog) {
     return (
-      <div> Error fetching blog or no blod available with id: {params.id} </div>
+      <div> Error fetching blog or no blog available with id: {params.id} </div>
     );
   }
+
+  const autoGrow = (element: HTMLTextAreaElement) => {
+    element.style.height = "auto";
+    element.style.height = `${element.scrollHeight}px`;
+  };
   return (
     <div className="mx-auto mb-8 flex max-w-6xl flex-col space-y-4 px-4 pt-8 sm:px-8">
       <Link
@@ -37,9 +43,11 @@ const Blog = ({ params }: { params: { id: string } }) => {
               day: "numeric",
             })}
           </div>
-          <input
-            type="text"
-            className="bg-none text-display-5 font-semibold leading-normal lg:text-4xl"
+          <Textarea
+            className="max-h-fit resize-none rounded-none border-none bg-transparent text-display-5 font-semibold leading-normal ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 lg:text-4xl"
+            placeholder="Untitled"
+            rows={1}
+            onInput={(e) => autoGrow(e.target as HTMLTextAreaElement)}
             defaultValue={blog.title}
           />
           <div className="flex gap-2">

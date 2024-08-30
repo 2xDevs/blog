@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      boxShadow: {
+        circle: "inset 0 0 0 2px hsl(var(--primary))",
+      },
       fontSize: {
         "display-1": "calc(1.625rem + 4.5vw)",
         "display-2": "calc(1.575rem + 3.9vw)",

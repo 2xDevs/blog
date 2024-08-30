@@ -8,24 +8,26 @@ import { useRouter } from "next/navigation";
 export const Blogs = ({ blogs }: { blogs: BlogProps[] }) => {
   const router = useRouter();
   return (
-    <section id="Blogs" className="pb-16">
+    <section id="Blogs" className="w-full sm:px-4 sm:pb-16 md:px-12">
       <div className="mx-auto max-w-6xl">
         {blogs.map((blog, index) => (
-          <div key={index} className="flex h-52 gap-16">
-            <div className="w-32 pt-5">
+          <div key={index} className="flex h-52 gap-4 md:gap-8">
+            <div className="hidden w-32 pt-5 lg:block">
               {new Date(blog.createdAt).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "short",
                 day: "numeric",
               })}
             </div>
-            <div className="relative flex h-full justify-center pt-7">
-              <div className="h-3 w-3 rounded-full bg-primary"></div>
-              <hr className="absolute left-1/2 h-full w-[1px] -translate-x-1/2 border-none bg-primary" />
+
+            <div className="hidden sm:relative sm:flex sm:h-full sm:justify-center sm:pt-7">
+              <hr className="left-1/2 -z-10 hidden h-full w-px -translate-x-1/2 bg-primary sm:absolute sm:block" />
+              <div className="hidden h-3 w-3 rounded-full bg-primary sm:block"></div>
             </div>
+
             <div className="h-full w-full">
               <Link href={`/blog/${blog.id}`}>
-                <div className="space-y-3 rounded-2xl px-8 py-5 hover:bg-muted">
+                <div className="space-y-3 px-4 py-4 hover:bg-muted sm:rounded-2xl sm:px-6 sm:py-5">
                   <h3 className="text-2xl font-semibold leading-normal">
                     {blog.title}
                   </h3>

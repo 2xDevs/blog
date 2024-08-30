@@ -7,8 +7,10 @@ import {
   HorizontalRule,
   StarterKit,
   Placeholder,
+  CodeBlockLowlight,
 } from "novel/extensions";
 import { UploadImagesPlugin } from "novel/plugins";
+import { common, createLowlight } from "lowlight";
 
 import { cx } from "class-variance-authority";
 
@@ -102,6 +104,12 @@ const starterKit = StarterKit.configure({
   gapcursor: false,
 });
 
+const codeBlockLowlight = CodeBlockLowlight.configure({
+  // configure lowlight: common /  all / use highlightJS in case there is a need to specify certain language grammars only
+  // common: covers 37 language grammars which should be good enough in most cases
+  lowlight: createLowlight(common),
+});
+
 export const defaultExtensions = [
   starterKit,
   placeholder,
@@ -111,4 +119,5 @@ export const defaultExtensions = [
   taskList,
   taskItem,
   horizontalRule,
+  codeBlockLowlight,
 ];

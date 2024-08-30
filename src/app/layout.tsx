@@ -1,11 +1,12 @@
 import { ThemeProvider } from "@/app/providers/ThemeProviders";
 import "@/styles/globals.css";
-import "./prosemirror.css";
+import "@/styles/prosemirror.css";
 
 import { Inter as FontSans } from "next/font/google";
 import { type Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/sonner";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -38,6 +39,17 @@ export default function RootLayout({
         >
           <Navbar />
           {children}
+          <Toaster
+            toastOptions={{
+              unstyled: false,
+              classNames: {
+                error: "bg-destructive",
+                success: "text-green-400",
+                warning: "text-yellow-400",
+                info: "bg-blue-400",
+              },
+            }}
+          />
         </ThemeProvider>
       </body>
     </html>
