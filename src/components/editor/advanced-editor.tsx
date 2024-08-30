@@ -21,12 +21,13 @@ import { slashCommand, suggestionItems } from "./slash-command";
 import { handleImageDrop, handleImagePaste } from "novel/plugins";
 import { uploadFn } from "./image-upload";
 import { Separator } from "../ui/separator";
+import { BlogContent } from "@/types/types";
 
 const extensions = [...defaultExtensions, slashCommand];
 
 interface EditorProp {
-  initialValue?: JSONContent;
-  onChange: (value: JSONContent) => void;
+  initialValue?: BlogContent;
+  onChange?: (value: JSONContent) => void;
   editable: boolean;
 }
 const Editor = ({ initialValue, onChange, editable }: EditorProp) => {
@@ -50,11 +51,11 @@ const Editor = ({ initialValue, onChange, editable }: EditorProp) => {
           handleDrop: (view, event, _slice, moved) =>
             handleImageDrop(view, event, moved, uploadFn),
           attributes: {
-            class: `prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full`,
+            class: `prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full p-0`,
           },
         }}
         onUpdate={({ editor }) => {
-          onChange(editor.getJSON());
+          if (onChange) onChange(editor.getJSON());
         }}
         slotAfter={<ImageResizer />}
       >

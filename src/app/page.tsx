@@ -3,13 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 
-async function fetchAllBlogs() {
+const fetchAllBlogs = async () => {
   const responce = await fetch("http://localhost:3000/api/blogs");
   if (!responce.ok) {
     throw new Error("Failed to fetch blogs");
   }
   return responce.json();
-}
+};
 
 export default async function HomePage() {
   const blogs = await fetchAllBlogs();

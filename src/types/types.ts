@@ -3,10 +3,15 @@ export type BlogProps = {
   title: string;
   content: BlogContent;
   image: string;
-  author: string;
+  author: Author;
   createdAt: string;
   updatedAt?: string;
 };
+
+interface Author {
+  name: string;
+  avatar: string;
+}
 
 interface BlogTextMark {
   type: "bold" | "link" | "code";
@@ -73,7 +78,7 @@ type BlogContentItem =
   | BlogHeading
   | BlogCodeBlock;
 
-interface BlogContent {
+export interface BlogContent {
   type: "doc";
   content: BlogContentItem[];
 }
