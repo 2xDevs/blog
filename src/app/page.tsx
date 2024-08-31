@@ -1,6 +1,7 @@
 import { Blogs } from "@/components/Blogs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { BlogBase } from "@/types/types";
 import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 
 const fetchAllBlogs = async () => {
@@ -12,7 +13,7 @@ const fetchAllBlogs = async () => {
 };
 
 export default async function HomePage() {
-  const blogs = await fetchAllBlogs();
+  const initialBlogs: BlogBase[] = await fetchAllBlogs();
   return (
     <main className="">
       <section id="Hero" className="max-w-6xl px-4 py-16 sm:mx-auto">
@@ -50,7 +51,7 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-      <Blogs blogs={blogs} />
+      <Blogs initialBlogs={initialBlogs} />
     </main>
   );
 }
