@@ -41,7 +41,7 @@ export const Navbar = () => {
         <div className="mx-auto flex max-w-6xl justify-between px-6">
           <Link href="/">
             <div className="flex gap-2">
-              <Icons.logo className="h-10 w-10 bg-background" />
+              <Icons.logo className="h-10 w-10 bg-black" />
             </div>
           </Link>
           <nav className="flex h-fit items-center gap-4">
