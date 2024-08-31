@@ -1,3 +1,10 @@
+export interface BlogBase {
+  id: string;
+  title: string;
+  content: string;
+  createdAt: string;
+}
+
 export type BlogProps = {
   id: number;
   title: string;
