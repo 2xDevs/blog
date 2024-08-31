@@ -86,13 +86,13 @@ const starterKit = StarterKit.configure({
   codeBlock: {
     HTMLAttributes: {
       class: cx(
-        "rounded-md bg-muted text-muted-foreground border p-5 font-mono font-medium",
+        "rounded-md bg-muted max-w-full text-muted-foreground overflow-x-scroll border p-5 font-mono font-medium",
       ),
     },
   },
   code: {
     HTMLAttributes: {
-      class: cx("rounded-md bg-muted  px-1.5 py-1 font-mono font-medium"),
+      class: cx("rounded-md bg-muted px-1.5 py-1 font-mono font-medium"),
       spellcheck: "false",
     },
   },
