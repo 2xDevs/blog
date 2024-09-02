@@ -11,6 +11,7 @@ export type BlogProps = {
   content: BlogContent;
   image: string;
   author: Author;
+  authorId: string;
   createdAt: string;
   updatedAt?: string;
 };

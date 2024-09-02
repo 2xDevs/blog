@@ -7,6 +7,7 @@ import { type Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
+import { SessionProviders } from "@/providers/SessionProviders";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -37,19 +38,21 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          {children}
-          <Toaster
-            toastOptions={{
-              unstyled: false,
-              classNames: {
-                error: "bg-destructive",
-                success: "text-green-400",
-                warning: "text-yellow-400",
-                info: "bg-blue-400",
-              },
-            }}
-          />
+          <SessionProviders>
+            <Navbar />
+            {children}
+            <Toaster
+              toastOptions={{
+                unstyled: false,
+                classNames: {
+                  error: "bg-destructive",
+                  success: "text-green-400",
+                  warning: "text-yellow-400",
+                  info: "bg-blue-400",
+                },
+              }}
+            />
+          </SessionProviders>
         </ThemeProvider>
       </body>
     </html>
