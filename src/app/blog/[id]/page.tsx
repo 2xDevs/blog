@@ -2,7 +2,9 @@ import { BackButton } from "@/components/BackButton";
 import Editor from "@/components/editor/advanced-editor";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { buttonVariants } from "@/components/ui/button";
+import { authOptions } from "@/server/auth";
 import { BlogProps } from "@/types/types";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
 
 const getBlog = async (params: { id: string }) => {
@@ -15,6 +17,7 @@ const getBlog = async (params: { id: string }) => {
 };
 
 const Blog = async ({ params }: { params: { id: string } }) => {
+  const session = await getServerSession(authOptions);
   const { id } = params;
   const blog: BlogProps = await getBlog({ id });
 
@@ -25,9 +28,11 @@ const Blog = async ({ params }: { params: { id: string } }) => {
     <div className="mx-auto mb-8 flex max-w-6xl flex-col space-y-4 px-4 pt-8 sm:px-8">
       <div className="mb-4 flex max-h-fit items-center justify-between">
         <BackButton />
-        <Link className={buttonVariants()} href={`/blog/${blog.id}/edit`}>
-          Edit blog
-        </Link>
+        {blog.authorId === session?.user.id && (
+          <Link className={buttonVariants()} href={`/blog/${blog.id}/edit`}>
+            Edit blog
+          </Link>
+        )}
       </div>
 
       <div className="mx-auto max-w-3xl">
@@ -45,12 +50,13 @@ const Blog = async ({ params }: { params: { id: string } }) => {
           </h1>
           <div className="flex gap-2">
             <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarImage src={blog.author.avatar} />
               <AvatarFallback>
                 {blog.author.name
                   .split(" ")
                   .map((word) => word.charAt(0))
-                  .join("")}
+                  .join("")
+                  .toLocaleUpperCase()}
               </AvatarFallback>
             </Avatar>
             <div className="">

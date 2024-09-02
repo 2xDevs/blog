@@ -43,14 +43,21 @@ export async function PATCH(
       return NextResponse.json({ error: "Missing credentials" });
     }
     const updatedBlog = await prisma.blog.update({
-      where: { id, authorId },
+      where: { id },
       data: {
         title,
         content,
         image,
       },
+      include: {
+        author: {
+          select: {
+            name: true,
+            avatar: true,
+          },
+        },
+      },
     });
-
     return NextResponse.json(updatedBlog, { status: 200 });
   } catch (error) {
     return NextResponse.json(

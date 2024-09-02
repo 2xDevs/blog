@@ -14,20 +14,33 @@ import { Cross2Icon } from "@radix-ui/react-icons";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 
-export const ImageUploader = ({ imageLink }: { imageLink: string }) => {
+interface ImageUpoaderProps {
+  imageLink: string;
+  onUpload: (value: string) => void;
+}
+
+export const ImageUploader = ({ imageLink, onUpload }: ImageUpoaderProps) => {
   const [imageUrl, setImageUrl] = useState<string | null>(imageLink);
-  const [imageFile, setImageFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [urlInput, setUrlInput] = useState<string>("");
   const [showUploader, setShowUploader] = useState<boolean>(false);
 
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const file = event.target.files?.[0];
     if (file) {
       const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
       if (allowedTypes.includes(file.type)) {
-        setImageFile(file);
-        setImageUrl(URL.createObjectURL(file));
+        const formdata = new FormData();
+        formdata.append("file", file);
+        const responce = await fetch("http://localhost:3000/api/upload", {
+          method: "POST",
+          body: formdata,
+        });
+        const data = await responce.json();
+        setImageUrl(data);
+        onUpload(data);
         setShowUploader(false);
       } else {
         toast.error("File upload failed", {
@@ -46,7 +59,7 @@ export const ImageUploader = ({ imageLink }: { imageLink: string }) => {
     // Check if URL ends with a common image extension
     if (url && imageExtensions.some((ext) => url.toLowerCase().endsWith(ext))) {
       setImageUrl(url);
-      setImageFile(null);
+      onUpload(url);
       setShowUploader(false);
     } else {
       toast.error("URL upload failed", {
@@ -59,7 +72,6 @@ export const ImageUploader = ({ imageLink }: { imageLink: string }) => {
 
   const handleDeleteClick = () => {
     setImageUrl(null);
-    setImageFile(null);
     setShowUploader(false);
     setUrlInput("");
   };
@@ -128,6 +140,45 @@ export const ImageUploader = ({ imageLink }: { imageLink: string }) => {
               </DialogHeader>
             </DialogContent>
           </Dialog>
+        </div>
+      )}
+      {!imageUrl && !showUploader && (
+        <div className="my-10 mt-4 flex aspect-video w-[48rem] items-center justify-center rounded-2xl bg-accent">
+          <Card className="w-full max-w-md p-6 shadow-lg">
+            <h2 className="mb-4 text-2xl font-bold">Image Uploader</h2>
+            <div className="space-y-4">
+              <div>
+                <Label htmlFor="file">Upload Image</Label>
+                <div className="mt-1 flex items-center">
+                  <Input
+                    id="file"
+                    onChange={handleFileUpload}
+                    ref={fileInputRef}
+                    className="mr-4 block h-fit w-full border-none px-0 text-sm text-card-foreground file:mr-4 file:rounded-full file:bg-primary file:px-4 file:py-2 file:font-semibold file:text-primary-foreground hover:file:bg-primary/90"
+                    type="file"
+                  />
+                </div>
+              </div>
+              <div>
+                <Label htmlFor="url">Or enter an image URL</Label>
+                <div className="mt-1 flex items-center">
+                  <Input
+                    id="url"
+                    type="text"
+                    onChange={(e) => setUrlInput(e.target.value)}
+                    placeholder="https://example.com/image.jpg"
+                  />
+                </div>
+              </div>
+              <Button
+                onClick={handleUrlUpload}
+                className="w-full"
+                type="button"
+              >
+                Upload
+              </Button>
+            </div>
+          </Card>
         </div>
       )}
     </div>

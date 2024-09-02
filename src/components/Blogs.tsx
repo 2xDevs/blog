@@ -13,7 +13,7 @@ export const Blogs = ({ initialBlogs }: { initialBlogs: BlogBase[] }) => {
 
   const LoadMoreBlogs = async () => {
     const responce = await fetch(`/api/blogs?skip=${blogs.length}`);
-    const newBLogs: BlogBase[] | null = await responce.json();
+    const newBLogs: BlogBase[] = await responce.json();
     if (newBLogs?.length === 0) {
       setHide(true);
       setNoMoreBlogs(true);

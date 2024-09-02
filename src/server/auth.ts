@@ -7,6 +7,7 @@ import GoogleProvider from "next-auth/providers/google";
 
 import { env } from "@/env";
 import { prisma } from "@/server/db";
+
 declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
@@ -35,40 +36,52 @@ export const authOptions: NextAuthOptions = {
   // },
   callbacks: {
     async signIn({ user }: any) {
-      const existingUser = await prisma.user.findUnique({
-        where: {
-          email: user.email,
-        },
-      });
-
-      console.log("user", user);
-      if (existingUser) {
-        return true;
-      }
-
       try {
-        await prisma.user.create({
-          data: {
-            name: user.name,
+        // Check if the user exists in the database
+        let existingUser = await prisma.user.findUnique({
+          where: {
             email: user.email,
-            avatar: user.image,
           },
         });
 
+        if (!existingUser) {
+          // Create a new user if it doesn't exist
+          existingUser = await prisma.user.create({
+            data: {
+              name: user.name,
+              email: user.email,
+              avatar: user.image,
+            },
+          });
+        }
+
+        // Add the user ID to the token
         return true;
       } catch (e) {
         console.error(e);
         return false;
       }
     },
-    async jwt({ token }: any) {
+    async jwt({ token, user }: any) {
+      // Add user ID to the token if it exists
+      if (user) {
+        const existingUser = await prisma.user.findUnique({
+          where: {
+            email: user.email,
+          },
+          select: { id: true },
+        });
+        if (existingUser) {
+          token.id = existingUser.id;
+        }
+      }
       return token;
     },
-    async session({ session, token }: any) {
+    async session({ session, token }) {
+      // Attach the user ID from the token to the session
       if (token) {
-        session.user.id = token.sub;
+        session.user.id = token.id as string;
       }
-      console.log(session, token);
       return session;
     },
   },
