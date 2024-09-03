@@ -53,7 +53,7 @@ export const CreateBlog = () => {
       } else {
         const data = await responce.json();
         setBlog(data);
-        toast("Blog Created Sucessfully", {
+        toast.success("Blog Created Sucessfully", {
           dismissible: true,
           duration: 3000,
           action: {

@@ -24,7 +24,7 @@ export const Blogs = ({ initialBlogs }: { initialBlogs: BlogBase[] }) => {
   };
 
   return (
-    <section id="Blogs" className="w-full sm:px-4 sm:pb-16 md:px-12">
+    <>
       <div className="hr-reducer mx-auto max-w-6xl">
         {blogs.map((blog, index) => (
           <div key={index} className="flex h-52 gap-4 md:gap-8">
@@ -67,6 +67,6 @@ export const Blogs = ({ initialBlogs }: { initialBlogs: BlogBase[] }) => {
         {/* No more blogs message */}
         {noMoreBlogs && <p>No more blogs to show</p>}
       </div>
-    </section>
+    </>
   );
 };

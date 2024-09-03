@@ -73,6 +73,9 @@ const starterKit = StarterKit.configure({
       class: cx("list-decimal list-outside leading-3 -mt-2"),
     },
   },
+  heading: {
+    levels: [2, 3],
+  },
   listItem: {
     HTMLAttributes: {
       class: cx("leading-normal -mb-2"),

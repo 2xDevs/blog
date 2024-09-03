@@ -46,7 +46,7 @@ export default function RootLayout({
                 unstyled: false,
                 classNames: {
                   error: "bg-destructive",
-                  success: "text-green-400",
+                  success: "bg-green-400",
                   warning: "text-yellow-400",
                   info: "bg-blue-400",
                 },

@@ -7,8 +7,7 @@ import { BlogProps } from "@/types/types";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 
-const getBlog = async (params: { id: string }) => {
-  const { id } = params;
+const getBlog = async (id: string) => {
   const responce = await fetch(`http://localhost:3000/api/blogs/${id}`);
   if (!responce.ok) {
     throw new Error(`Failed to get Blog: ${id}`);
@@ -19,7 +18,7 @@ const getBlog = async (params: { id: string }) => {
 const Blog = async ({ params }: { params: { id: string } }) => {
   const session = await getServerSession(authOptions);
   const { id } = params;
-  const blog: BlogProps = await getBlog({ id });
+  const blog: BlogProps = await getBlog(id);
 
   if (!blog) {
     return <div> Error fetching blog or no blod available with id: {id} </div>;
@@ -61,9 +60,9 @@ const Blog = async ({ params }: { params: { id: string } }) => {
             </Avatar>
             <div className="">
               <p className="text-sm font-semibold">{blog.author.name}</p>
-              <p className="text-sm text-primary">
+              <Link href={`/${blog.authorId}`} className="text-sm text-primary">
                 @{blog.author.name.split(" ")[0]}
-              </p>
+              </Link>
             </div>
           </div>
         </div>

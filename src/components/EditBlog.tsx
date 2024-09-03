@@ -6,6 +6,7 @@ import { ImageUploader } from "@/components/ImageUploader";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { BlogProps } from "@/types/types";
+import { redirect, useRouter } from "next/navigation";
 import { JSONContent } from "novel";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
@@ -16,6 +17,7 @@ export const EditBlog = ({ InitialBlog }: { InitialBlog: BlogProps }) => {
   const [image, setImage] = useState(blog.image);
   const [content, setContent] = useState(blog.content);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -52,7 +54,7 @@ export const EditBlog = ({ InitialBlog }: { InitialBlog: BlogProps }) => {
       } else {
         const data = await responce.json();
         setBlog(data);
-        toast("Blog Updated Sucessfully", {
+        toast.success("Blog Updated Sucessfully", {
           dismissible: true,
           duration: 3000,
           action: {
@@ -60,6 +62,8 @@ export const EditBlog = ({ InitialBlog }: { InitialBlog: BlogProps }) => {
             onClick: () => {},
           },
         });
+        router.push(`/blog/${data.id}`);
+        // redirect(`/blod/${data.id}`);
       }
     } catch (error) {
       toast.error("Failed to Update Blog", {
