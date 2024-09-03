@@ -1,3 +1,10 @@
+export type UserProps = {
+  id: string;
+  name: string;
+  avatar: string;
+  email: string;
+};
+
 export interface BlogBase {
   id: string;
   title: string;

@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import { v2 as cloudinary } from "cloudinary";
 import { env } from "@/env";
 
@@ -12,7 +12,6 @@ cloudinary.config({
 
 interface CloudinaryUploadResult {
   secure_url: string;
-  [key: string]: any;
 }
 
 export async function POST(request: NextRequest) {
@@ -32,6 +31,7 @@ export async function POST(request: NextRequest) {
         const uploadStream = cloudinary.uploader.upload_stream(
           { folder: "2xBlog" },
           (error, result) => {
+            // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
             if (error) reject(error);
             else resolve(result as CloudinaryUploadResult);
           },

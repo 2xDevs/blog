@@ -11,7 +11,7 @@ import {
   CheckSquare,
   type LucideIcon,
 } from "lucide-react";
-import { EditorBubbleItem, EditorInstance, useEditor } from "novel";
+import { EditorBubbleItem, type EditorInstance, useEditor } from "novel";
 
 import { Popover } from "@radix-ui/react-popover";
 import { PopoverContent, PopoverTrigger } from "@/components//ui/popover";

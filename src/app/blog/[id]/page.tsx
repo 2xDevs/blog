@@ -1,18 +1,24 @@
+/* eslint-disable @next/next/no-img-element */
 import { BackButton } from "@/components/BackButton";
 import Editor from "@/components/editor/advanced-editor";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { buttonVariants } from "@/components/ui/button";
 import { authOptions } from "@/server/auth";
-import { BlogProps } from "@/types/types";
+import { type BlogProps } from "@/types/types";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 
 const getBlog = async (id: string) => {
-  const responce = await fetch(`http://localhost:3000/api/blogs/${id}`);
+  const responce = await fetch(`http://localhost:3000/api/blogs/${id}`, {
+    next: {
+      revalidate: 60,
+    },
+  });
   if (!responce.ok) {
     throw new Error(`Failed to get Blog: ${id}`);
   }
-  return responce.json();
+  const data: BlogProps = (await responce.json()) as BlogProps;
+  return data;
 };
 
 const Blog = async ({ params }: { params: { id: string } }) => {

@@ -21,7 +21,7 @@ import { slashCommand, suggestionItems } from "./slash-command";
 import { handleImageDrop, handleImagePaste } from "novel/plugins";
 import { uploadFn } from "./image-upload";
 import { Separator } from "../ui/separator";
-import { BlogContent } from "@/types/types";
+import { type BlogContent } from "@/types/types";
 
 const extensions = [...defaultExtensions, slashCommand];
 

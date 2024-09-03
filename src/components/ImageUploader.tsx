@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Icons } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -43,7 +44,7 @@ export const ImageUploader = ({ imageLink, onUpload }: ImageUpoaderProps) => {
           method: "POST",
           body: formdata,
         });
-        const data = await responce.json();
+        const data = (await responce.json()) as string;
         setImageUrl(data);
         setLoading(false);
         onUpload(data);
@@ -73,12 +74,6 @@ export const ImageUploader = ({ imageLink, onUpload }: ImageUpoaderProps) => {
         duration: 3000,
       });
     }
-  };
-
-  const handleDeleteClick = () => {
-    setImageUrl(null);
-    setShowUploader(false);
-    setUrlInput("");
   };
 
   return (
