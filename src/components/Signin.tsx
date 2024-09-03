@@ -5,13 +5,47 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Icons } from "@/components/Icons";
 import { toast } from "sonner";
+import { useState } from "react";
 
 const Signin = () => {
+  const [transformStyle, setTransformStyle] = useState({});
+
+  const handleMouseMove = (event: any) => {
+    const svg = event.currentTarget;
+    const x = event.clientX;
+    const y = event.clientY;
+
+    const middleX = window.innerWidth / 2;
+    const middleY = window.innerHeight / 2;
+
+    const rotateX = -1 * ((x - middleX) / middleX) * 15;
+    const rotateY = ((y - middleY) / middleY) * 15;
+
+    setTransformStyle({
+      transform: `rotateX(${rotateY}deg) rotateY(${rotateX}deg)`,
+      transition: "transform 0.1s",
+      transformStyle: "preserve-3d",
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setTransformStyle({
+      transform: `rotateX(${0}deg) rotateY(${0}deg)`,
+    });
+  };
   return (
     <>
-      <div className="flex h-[calc(100dvh-72px)]">
+      <div onMouseMove={handleMouseMove} className="flex h-[calc(100dvh-72px)]">
         <div className="flex flex-1 items-center justify-center">
-          <Icons.logo className="h-3/4 w-3/4 animate-signin-svg" />
+          <div
+            className="animate-signin-svg"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={transformStyle}
+          >
+            <Icons.logo className="" />
+          </div>
+          {/* <Icons.logo className="animate-signin-svg h-3/4 w-3/4" /> */}
         </div>
         <div className="flex flex-1 items-center justify-center">
           <SigninForm />

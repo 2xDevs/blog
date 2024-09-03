@@ -76,10 +76,6 @@
   box-sizing: border-box;
 }
 
-.animate-signin-svg > path:not(:nth-child(1)):hover {
-  transform: translateY(-2rem);
-  transition: transform 1s;
-}
 [contenteditable="true"]:empty:before {
   content: attr(aria-placeholder);
   pointer-events: none;

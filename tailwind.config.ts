@@ -20,6 +20,11 @@ const config = {
     extend: {
       boxShadow: {
         circle: "inset 0 0 0 2px hsl(var(--primary))",
+        "equal-sm": "0 0 5px var(--tw-shadow-color)",
+        "equal-md": "0 0 10px var(--tw-shadow-color)",
+        "equal-lg": "0 0 15px var(--tw-shadow-color)",
+        "equal-xl": "0 0 25px var(--tw-shadow-color)",
+        "equal-2xl": "0 0 35px var(--tw-shadow-color)",
       },
       fontSize: {
         "display-1": "calc(1.625rem + 4.5vw)",
