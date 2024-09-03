@@ -1,5 +1,5 @@
 import { prisma } from "@/server/db";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   req: NextRequest,
@@ -17,6 +17,7 @@ export async function GET(
     }
     return NextResponse.json(user, { status: 200 });
   } catch (error) {
+    console.log(error);
     return NextResponse.json({ error: "Falied to Get User" }, { status: 500 });
   }
 }

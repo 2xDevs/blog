@@ -1,5 +1,6 @@
 import { prisma } from "@/server/db";
-import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath, revalidateTag } from "next/cache";
+import { type NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   req: NextRequest,
@@ -22,6 +23,7 @@ export async function GET(
 
     return NextResponse.json(blog, { status: 200 });
   } catch (error) {
+    console.log(error);
     return NextResponse.json({ error: "Failed to Get blog" }, { status: 500 });
   }
 }
@@ -38,7 +40,12 @@ export async function PATCH(
       content,
       image,
     }: { authorId: string; title?: string; content?: string; image?: string } =
-      await req.json();
+      (await req.json()) as {
+        authorId: string;
+        title?: string;
+        content?: string;
+        image?: string;
+      };
     if (!authorId) {
       return NextResponse.json({ error: "Missing credentials" });
     }
@@ -58,8 +65,12 @@ export async function PATCH(
         },
       },
     });
+    revalidatePath(`/blog/${id}`);
+    revalidatePath(`/blog/${id}/edit`);
+    revalidateTag("blogs");
     return NextResponse.json(updatedBlog, { status: 200 });
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: "Failed to Update blog" },
       { status: 500 },
@@ -73,19 +84,25 @@ export async function DELETE(
 ) {
   try {
     const id = params.id;
-    const { authorId }: { authorId: string } = await req.json();
+    const { authorId }: { authorId: string } = (await req.json()) as {
+      authorId: string;
+    };
     if (!authorId) {
       return NextResponse.json({ error: "Missing credentials" });
     }
     await prisma.blog.delete({
       where: { id, authorId },
     });
+    revalidatePath(`/blog/${id}`);
+    revalidatePath(`/blog/${id}/edit`);
+    revalidateTag("blogs");
 
     return NextResponse.json(
       { message: "Blog Deleted Successfully" },
       { status: 200 },
     );
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: "Failed to delete blog" },
       { status: 500 },

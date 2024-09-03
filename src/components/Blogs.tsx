@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { BlogBase } from "@/types/types";
+import { type BlogBase } from "@/types/types";
 import { ChevronRightIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { useState } from "react";
@@ -13,7 +13,7 @@ export const Blogs = ({ initialBlogs }: { initialBlogs: BlogBase[] }) => {
 
   const LoadMoreBlogs = async () => {
     const responce = await fetch(`/api/blogs?skip=${blogs.length}`);
-    const newBLogs: BlogBase[] = await responce.json();
+    const newBLogs: BlogBase[] = (await responce.json()) as BlogBase[];
     if (newBLogs?.length === 0) {
       setHide(true);
       setNoMoreBlogs(true);

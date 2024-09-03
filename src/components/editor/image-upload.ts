@@ -16,7 +16,7 @@ const onUpload = (file: File) => {
         if (res.status === 200) {
           const url = (await res.json()) as string;
           // preload the image
-          let image = new Image();
+          const image = new Image();
           image.src = url;
           image.onload = () => {
             resolve(url);
@@ -35,6 +35,7 @@ const onUpload = (file: File) => {
       {
         loading: "Uploading image...",
         success: "Image uploaded successfully.",
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
         error: (e) => e.message,
       },
     );

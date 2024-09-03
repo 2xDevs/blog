@@ -5,13 +5,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Icons } from "@/components/Icons";
 import { toast } from "sonner";
-import { useState } from "react";
+import { useState, type CSSProperties, type MouseEvent } from "react";
 
 const Signin = () => {
-  const [transformStyle, setTransformStyle] = useState({});
+  const [transformStyle, setTransformStyle] = useState<CSSProperties>({});
 
-  const handleMouseMove = (event: any) => {
-    const svg = event.currentTarget;
+  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
+    // const svg = event.currentTarget;
     const x = event.clientX;
     const y = event.clientY;
 
@@ -30,27 +30,25 @@ const Signin = () => {
 
   const handleMouseLeave = () => {
     setTransformStyle({
-      transform: `rotateX(${0}deg) rotateY(${0}deg)`,
+      transform: `rotateX(0deg) rotateY(0deg)`,
     });
   };
+
   return (
-    <>
-      <div onMouseMove={handleMouseMove} className="flex h-[calc(100dvh-72px)]">
-        <div className="flex flex-1 items-center justify-center">
-          <div
-            className="animate-signin-svg"
-            onMouseLeave={handleMouseLeave}
-            style={transformStyle}
-          >
-            <Icons.logo className="" />
-          </div>
-          {/* <Icons.logo className="animate-signin-svg h-3/4 w-3/4" /> */}
-        </div>
-        <div className="flex flex-1 items-center justify-center">
-          <SigninForm />
+    <div onMouseMove={handleMouseMove} className="flex h-[calc(100dvh-72px)]">
+      <div className="flex flex-1 items-center justify-center">
+        <div
+          className="animate-signin-svg"
+          onMouseLeave={handleMouseLeave}
+          style={transformStyle}
+        >
+          <Icons.logo className="" />
         </div>
       </div>
-    </>
+      <div className="flex flex-1 items-center justify-center">
+        <SigninForm />
+      </div>
+    </div>
   );
 };
 

@@ -5,18 +5,21 @@ import Editor from "@/components/editor/advanced-editor";
 import { ImageUploader } from "@/components/ImageUploader";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { type BlogProps } from "@/types/types";
 import { useSession } from "next-auth/react";
-import { JSONContent } from "novel";
+import { useRouter } from "next/navigation";
+import { type JSONContent } from "novel";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 export const CreateBlog = () => {
   const { data: session } = useSession();
-  const [blog, setBlog] = useState();
+  // const [blog, setBlog] = useState();
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [content, setContent] = useState();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -33,7 +36,9 @@ export const CreateBlog = () => {
     setImage(newImage);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-redundant-type-constituents
   const handleEditorChange = (newContent: JSONContent | any) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     setContent(newContent);
   };
 
@@ -51,18 +56,21 @@ export const CreateBlog = () => {
       if (!responce.ok) {
         throw new Error("Failed to Create Blog");
       } else {
-        const data = await responce.json();
-        setBlog(data);
+        const data = (await responce.json()) as BlogProps;
+        // setBlog(data);
         toast.success("Blog Created Sucessfully", {
           dismissible: true,
           duration: 3000,
           action: {
             label: "Done",
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
             onClick: () => {},
           },
         });
+        router.push(`/blog/${data.id}`);
       }
     } catch (error) {
+      console.log(error);
       toast.error("Failed to Create Blog", {
         description: "Please try again later...",
         dismissible: true,
@@ -98,7 +106,9 @@ export const CreateBlog = () => {
             />
             <div className="flex gap-2">
               <Avatar>
-                <AvatarImage src={session?.user.image!} />
+                {session.user.image && (
+                  <AvatarImage src={session?.user.image} />
+                )}
                 <AvatarFallback>
                   {session?.user
                     .name!.split(" ")

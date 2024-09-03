@@ -4,8 +4,9 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import cover from "../../public/2x-blog-cover.jpeg";
+import { type UserProps } from "@/types/types";
 
-const Profile = ({ user }: any) => {
+const Profile = ({ user }: { user: UserProps }) => {
   return (
     <section className="relative pt-48" id="profile">
       <Image

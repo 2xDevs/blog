@@ -1,5 +1,5 @@
 import {
-  getServerSession,
+  type User,
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
@@ -7,6 +7,7 @@ import GoogleProvider from "next-auth/providers/google";
 
 import { env } from "@/env";
 import { prisma } from "@/server/db";
+import { type JWT } from "next-auth/jwt";
 
 declare module "next-auth" {
   interface Session extends DefaultSession {
@@ -30,41 +31,45 @@ export const authOptions: NextAuthOptions = {
       clientSecret: env.GOOGLE_CLIENT_SECRET,
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET || "secr3t",
+  secret: process.env.NEXTAUTH_SECRET ?? "secr3t",
   // pages: {
   //   signIn: "/signin",
   // },
   callbacks: {
-    async signIn({ user }: any) {
+    async signIn({ user }: { user: User }) {
       try {
         // Check if the user exists in the database
-        let existingUser = await prisma.user.findUnique({
+        if (!user.email) {
+          throw new Error("User email is missing");
+        }
+        const existingUser = await prisma.user.findUnique({
           where: {
             email: user.email,
           },
         });
 
-        if (!existingUser) {
-          // Create a new user if it doesn't exist
-          existingUser = await prisma.user.create({
-            data: {
-              name: user.name,
-              email: user.email,
-              avatar: user.image,
-            },
-          });
-        }
+        // if (!existingUser) {
+        //   // Create a new user if it doesn't exist
+        //   existingUser = await prisma.user.create({
+        //     data: {
+        //       name: user.name,
+        //       email: user.email,
+        //       avatar: user.image,
+        //     },
+        //   });
+        // }
 
         // Add the user ID to the token
-        return true;
+        if (existingUser) return true;
+        return "/auth/error";
       } catch (e) {
         console.error(e);
         return false;
       }
     },
-    async jwt({ token, user }: any) {
+    async jwt({ token, user }: { token: JWT; user?: User | null }) {
       // Add user ID to the token if it exists
-      if (user) {
+      if (user?.email) {
         const existingUser = await prisma.user.findUnique({
           where: {
             email: user.email,

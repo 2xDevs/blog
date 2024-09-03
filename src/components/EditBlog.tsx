@@ -5,9 +5,9 @@ import Editor from "@/components/editor/advanced-editor";
 import { ImageUploader } from "@/components/ImageUploader";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { BlogProps } from "@/types/types";
-import { redirect, useRouter } from "next/navigation";
-import { JSONContent } from "novel";
+import { type BlogProps } from "@/types/types";
+import { useRouter } from "next/navigation";
+import { type JSONContent } from "novel";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
@@ -34,7 +34,9 @@ export const EditBlog = ({ InitialBlog }: { InitialBlog: BlogProps }) => {
     setImage(newImage);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-redundant-type-constituents
   const handleEditorChange = (newContent: JSONContent | any) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     setContent(newContent);
   };
 
@@ -52,20 +54,21 @@ export const EditBlog = ({ InitialBlog }: { InitialBlog: BlogProps }) => {
       if (!responce.ok) {
         throw new Error("Failed to Update Blog");
       } else {
-        const data = await responce.json();
+        const data = (await responce.json()) as BlogProps;
         setBlog(data);
         toast.success("Blog Updated Sucessfully", {
           dismissible: true,
           duration: 3000,
           action: {
             label: "Done",
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
             onClick: () => {},
           },
         });
         router.push(`/blog/${data.id}`);
-        // redirect(`/blod/${data.id}`);
       }
     } catch (error) {
+      console.log(error);
       toast.error("Failed to Update Blog", {
         description: "Please try again later...",
         dismissible: true,

@@ -1,9 +1,9 @@
 import { Profile } from "@/components/Profile";
-
+import { type UserProps } from "@/types/types";
 const getUser = async (id: string) => {
   const response = await fetch(`http://localhost:3000/api/user/${id}`);
-
-  return response.json();
+  const data: UserProps = (await response.json()) as UserProps;
+  return data;
 };
 
 const ProfilePage = async ({ params }: { params: { id: string } }) => {

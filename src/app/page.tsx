@@ -1,15 +1,21 @@
 import { Blogs } from "@/components/Blogs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { BlogBase } from "@/types/types";
+import { type BlogBase } from "@/types/types";
 import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 
 const fetchAllBlogs = async () => {
-  const responce = await fetch("http://localhost:3000/api/blogs");
+  const responce = await fetch("http://localhost:3000/api/blogs", {
+    next: {
+      revalidate: false,
+      tags: ["blogs"],
+    },
+  });
   if (!responce.ok) {
     throw new Error("Failed to fetch blogs");
   }
-  return responce.json();
+  const data: BlogBase[] = (await responce.json()) as BlogBase[];
+  return data;
 };
 
 export default async function HomePage() {
