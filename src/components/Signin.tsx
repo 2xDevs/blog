@@ -39,7 +39,6 @@ const Signin = () => {
         <div className="flex flex-1 items-center justify-center">
           <div
             className="animate-signin-svg"
-            onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             style={transformStyle}
           >

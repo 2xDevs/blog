@@ -18,15 +18,15 @@ export default async function HomePage() {
     <main className="">
       <section id="Hero" className="max-w-6xl px-4 py-16 sm:mx-auto">
         <div className="mx-auto max-w-2xl space-y-6">
-          <h1 className="text-center text-display-4 font-bold lg:text-5xl">
+          <h1 className="animate-fade-in text-center text-display-4 font-bold lg:text-5xl">
             Latest Blogs
           </h1>
-          <h2 className="text-center text-xl font-medium text-secondary-foreground">
+          <h2 className="animate-fade-in text-center text-xl font-medium text-secondary-foreground opacity-0 [animation-delay:100ms]">
             Join us on our coding journey! Discover tips, real-world
             experiences, and more. Learn, grow, and code with us at
             blog@2xdevs.com
           </h2>
-          <div className="mx-auto flex max-w-sm gap-4">
+          <div className="mx-auto flex max-w-sm animate-fade-in gap-4 opacity-0 [animation-delay:200ms]">
             <form className="-mx-2 flex flex-wrap">
               <div className="mt-3 grow-[9999] basis-64 px-2">
                 <div className="group relative">
@@ -51,7 +51,12 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-      <Blogs initialBlogs={initialBlogs} />
+      <section
+        id="Blogs"
+        className="w-full animate-fade-in opacity-0 [animation-delay:300ms] sm:px-4 sm:pb-16 md:px-12"
+      >
+        <Blogs initialBlogs={initialBlogs} />
+      </section>
     </main>
   );
 }

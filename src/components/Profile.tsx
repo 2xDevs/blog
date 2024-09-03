@@ -17,7 +17,7 @@ const Profile = ({ user }: any) => {
       />
       <div className="relative mx-auto h-full max-w-2xl rounded-2xl bg-foreground p-8 pt-20 text-background shadow-xl shadow-zinc-700">
         <div className="mx-auto max-w-fit space-y-8">
-          <div className="absolute -top-16 left-1/2 mx-auto h-36 w-36 max-w-fit -translate-x-1/2 rounded-full shadow-equal-lg shadow-white">
+          <div className="absolute -top-16 left-1/2 mx-auto h-36 w-36 max-w-fit -translate-x-1/2 rounded-full shadow-equal-lg shadow-background">
             <Image
               alt="Profile Pic"
               width={1920}

@@ -1,3 +1,4 @@
+import { Icons } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -24,14 +25,18 @@ export const ImageUploader = ({ imageLink, onUpload }: ImageUpoaderProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [urlInput, setUrlInput] = useState<string>("");
   const [showUploader, setShowUploader] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
 
   const handleFileUpload = async (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
+    setShowUploader(false);
     const file = event.target.files?.[0];
     if (file) {
       const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
       if (allowedTypes.includes(file.type)) {
+        setImageUrl(URL.createObjectURL(file));
+        setLoading(true);
         const formdata = new FormData();
         formdata.append("file", file);
         const responce = await fetch("http://localhost:3000/api/upload", {
@@ -40,8 +45,8 @@ export const ImageUploader = ({ imageLink, onUpload }: ImageUpoaderProps) => {
         });
         const data = await responce.json();
         setImageUrl(data);
+        setLoading(false);
         onUpload(data);
-        setShowUploader(false);
       } else {
         toast.error("File upload failed", {
           description: "Please upload a valid image file (JPG, PNG, or GIF).",
@@ -80,6 +85,13 @@ export const ImageUploader = ({ imageLink, onUpload }: ImageUpoaderProps) => {
     <div className="max-w-full">
       {imageUrl && (
         <div className="relative my-10 overflow-hidden rounded-2xl">
+          {loading && (
+            <>
+              <div className="absolute flex h-full w-full items-center justify-center backdrop-brightness-50 backdrop-filter">
+                <Icons.spinner className="animate-spin" />
+              </div>
+            </>
+          )}
           <img src={imageUrl} alt="Uploaded" className="h-auto w-full" />
           <div className="absolute inset-0 flex items-center justify-center">
             <Button
