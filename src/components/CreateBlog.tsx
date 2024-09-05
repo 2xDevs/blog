@@ -88,14 +88,6 @@ export const CreateBlog = () => {
         </div>
         <div className="mx-auto max-w-3xl">
           <div className="space-y-4">
-            <div className="text-xs text-muted-foreground">
-              {new Date().toLocaleDateString("en-US", {
-                weekday: "long",
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })}
-            </div>
             <textarea
               ref={textareaRef}
               value={title}

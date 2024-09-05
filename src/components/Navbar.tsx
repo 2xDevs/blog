@@ -3,7 +3,7 @@
 import { Icons } from "@/components/Icons";
 import { ModeToggle } from "@/components/ModeToggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -108,8 +108,10 @@ export const Navbar = () => {
                   </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem>
-                    <Link href={`/${session.user.id}`}>Profile</Link>
+                  <DropdownMenuItem asChild>
+                    <Link className="w-full" href={`/${session.user.id}`}>
+                      Profile
+                    </Link>
                   </DropdownMenuItem>
 
                   <DropdownMenuSub>
@@ -120,8 +122,14 @@ export const Navbar = () => {
                     />
                   </DropdownMenuSub>
 
-                  <DropdownMenuItem onClick={async () => await signOut()}>
-                    Signout
+                  <DropdownMenuItem className="p-0">
+                    <Button
+                      onClick={async () => await signOut()}
+                      variant={"ghost"}
+                      className="h-fit w-full justify-start py-1.5 pl-3 font-normal hover:bg-destructive hover:text-destructive-foreground"
+                    >
+                      Signout
+                    </Button>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

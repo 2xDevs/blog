@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Icons } from "@/components/Icons";
 import { toast } from "sonner";
 import { useState, type CSSProperties, type MouseEvent } from "react";
+import { signIn } from "next-auth/react";
 
 const Signin = () => {
   const [transformStyle, setTransformStyle] = useState<CSSProperties>({});
@@ -99,7 +100,14 @@ const SigninForm = () => {
         </div>
       </div>
       <div className="w-full space-y-4">
-        <Button className="w-full" variant="outline" type="button">
+        <Button
+          onClick={() => {
+            signIn("google", { callbackUrl: "/" });
+          }}
+          className="w-full"
+          variant="outline"
+          type="button"
+        >
           <Icons.google className="mr-2 h-4 w-4" />
           <span>Login with Google</span>
         </Button>
