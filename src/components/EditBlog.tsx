@@ -6,6 +6,7 @@ import { ImageUploader } from "@/components/ImageUploader";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { type BlogProps } from "@/types/types";
+import { CalendarDays } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { type JSONContent } from "novel";
 import { useEffect, useRef, useState } from "react";
@@ -86,7 +87,8 @@ export const EditBlog = ({ InitialBlog }: { InitialBlog: BlogProps }) => {
         </div>
         <div className="mx-auto max-w-3xl">
           <div className="space-y-4">
-            <div className="text-xs text-muted-foreground">
+            <div className="flex text-xs text-muted-foreground">
+              <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
               {new Date(blog.createdAt).toLocaleDateString("en-US", {
                 weekday: "long",
                 year: "numeric",

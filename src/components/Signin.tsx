@@ -101,8 +101,8 @@ const SigninForm = () => {
       </div>
       <div className="w-full space-y-4">
         <Button
-          onClick={() => {
-            signIn("google", { callbackUrl: "/" });
+          onClick={async () => {
+            await signIn("google", { callbackUrl: "/" });
           }}
           className="w-full"
           variant="outline"
