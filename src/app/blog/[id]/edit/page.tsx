@@ -1,4 +1,5 @@
 import { EditBlog } from "@/components/EditBlog";
+import { env } from "@/env";
 import { authOptions } from "@/server/auth";
 import { type BlogProps } from "@/types/types";
 import { getServerSession } from "next-auth";
@@ -7,7 +8,7 @@ import { redirect } from "next/navigation";
 const getBlog = async (params: { id: string }) => {
   const { id } = params;
   try {
-    const responce = await fetch(`http://localhost:3000/api/blogs/${id}`);
+    const responce = await fetch(`${env.NEXT_API_URL}/api/blogs/${id}`);
     if (!responce.ok) {
       throw new Error(`Failed to get Blog: ${id}`);
     }

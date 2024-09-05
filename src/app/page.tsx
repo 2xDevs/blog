@@ -1,11 +1,12 @@
 import { Blogs } from "@/components/Blogs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { env } from "@/env";
 import { type BlogBase } from "@/types/types";
 import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 
 const fetchAllBlogs = async () => {
-  const responce = await fetch("http://localhost:3000/api/blogs", {
+  const responce = await fetch(`${env.NEXT_API_URL}/api/blogs`, {
     next: {
       revalidate: false,
       tags: ["blogs"],
