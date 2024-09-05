@@ -6,6 +6,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { env } from "@/env";
 import { authOptions } from "@/server/auth";
 import { type BlogProps } from "@/types/types";
+import { CalendarDays } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
@@ -44,7 +45,8 @@ const Blog = async ({ params }: { params: { id: string } }) => {
 
       <div className="mx-auto max-w-3xl">
         <div className="space-y-4">
-          <div className="text-xs text-muted-foreground">
+          <div className="flex text-xs text-muted-foreground">
+            <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
             {new Date(blog.createdAt).toLocaleDateString("en-US", {
               weekday: "long",
               year: "numeric",

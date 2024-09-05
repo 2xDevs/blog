@@ -19,7 +19,6 @@ export const Blogs = ({ initialBlogs }: { initialBlogs: BlogBase[] }) => {
       setNoMoreBlogs(true);
       return;
     }
-    console.log(responce, newBLogs);
     setBlogs((prevBlogs) => [...prevBlogs, ...newBLogs]);
   };
 
@@ -44,7 +43,7 @@ export const Blogs = ({ initialBlogs }: { initialBlogs: BlogBase[] }) => {
             <div className="h-full w-full">
               <Link href={`/blog/${blog.id}`}>
                 <div className="space-y-3 px-4 py-4 hover:bg-muted sm:rounded-2xl sm:px-6 sm:py-5">
-                  <h3 className="text-2xl font-semibold leading-normal">
+                  <h3 className="line-clamp-1 text-2xl font-semibold leading-normal">
                     {blog.title}
                   </h3>
                   <p className="line-clamp-2 text-lg text-secondary-foreground">

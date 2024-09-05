@@ -3,6 +3,8 @@ export type UserProps = {
   name: string;
   avatar: string;
   email: string;
+  blogs: BlogBase[];
+  blogCount: number;
 };
 
 export interface BlogBase {

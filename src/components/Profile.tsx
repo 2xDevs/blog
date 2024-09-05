@@ -1,74 +1,120 @@
-import { Icons } from "@/components/Icons";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
-import Link from "next/link";
-import cover from "../../public/2x-blog-cover.jpeg";
+"use client";
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
+import { BookOpenIcon, CalendarDays, ThumbsUp } from "lucide-react";
 import { type UserProps } from "@/types/types";
+import Link from "next/link";
 
 const Profile = ({ user }: { user: UserProps }) => {
   return (
-    <section className="relative pt-48" id="profile">
-      <Image
-        className="absolute top-0 -z-20 h-64 w-full"
-        src={cover}
-        height={1920}
-        width={1080}
-        alt="cover-image"
-      />
-      <div className="relative mx-auto h-full max-w-2xl rounded-2xl bg-foreground p-8 pt-20 text-background shadow-xl shadow-zinc-700">
-        <div className="mx-auto max-w-fit space-y-8">
-          <div className="absolute -top-16 left-1/2 mx-auto h-36 w-36 max-w-fit -translate-x-1/2 rounded-full shadow-equal-lg shadow-background">
-            <Image
-              alt="Profile Pic"
-              width={1920}
-              height={1080}
-              className="rounded-full"
-              src={user.avatar}
-            />
+    <div className="container mx-auto max-w-3xl space-y-4 px-4 py-8">
+      <Card className="overflow-hidden">
+        <CardHeader className="">
+          <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-start">
+            <Avatar className="h-32 w-32 sm:h-48 sm:w-48">
+              <AvatarImage src={user.avatar} alt={user.name} />
+              <AvatarFallback>
+                {user.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")}
+              </AvatarFallback>
+            </Avatar>
+            <div className="text-center sm:text-left">
+              <CardTitle className="text-3xl sm:text-4xl">
+                {user.name}
+              </CardTitle>
+              <CardContent className="mb-3 p-0 text-primary">
+                @{user.name.split(" ")[0]}
+              </CardContent>
+              <div className="mb-4 flex justify-center space-x-4 sm:justify-start">
+                <Button variant="outline" size="icon" asChild>
+                  <Link
+                    href={"/"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub Profile"
+                  >
+                    <GitHubLogoIcon className="h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button variant="outline" size="icon" asChild>
+                  <Link
+                    href={"/"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn Profile"
+                  >
+                    <LinkedInLogoIcon className="h-5 w-5" />
+                  </Link>
+                </Button>
+              </div>
+              <div className="flex justify-center space-x-4 sm:justify-start">
+                <Badge variant="secondary" className="px-3 py-1 text-sm">
+                  <BookOpenIcon className="mr-1 h-4 w-4" />
+                  {user.blogCount} Blogs
+                </Badge>
+                <Badge variant="secondary" className="px-3 py-1 text-sm">
+                  <ThumbsUp className="mr-1 h-4 w-4" />
+                  {101} Likes
+                </Badge>
+              </div>
+            </div>
           </div>
-          <div className="space-y-2">
-            <h3 className="text-display-6 font-bold leading-none lg:text-4xl">
-              {user.name}
-            </h3>
-            <Link
-              href={"/"}
-              className={cn(
-                buttonVariants({ variant: "link" }),
-                "mx-auto h-fit w-full p-0 text-lg text-primary",
-              )}
-            >
-              @{user.email}
-            </Link>
+        </CardHeader>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>About Me</CardTitle>
+          <CardDescription>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem atque
+            possimus ducimus officia perspiciatis odit doloremque perferendis
+            consectetur qui esse? Incidunt itaque deserunt aperiam modi.
+          </CardDescription>
+        </CardHeader>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Recent Posts</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            {user.blogs.map((blog) => (
+              <div key={blog.id} className="flex items-center space-x-4">
+                <div className="space-y-1">
+                  <h3 className="font-medium leading-none">{blog.title}</h3>
+                  <p className="line-clamp-1 text-sm text-muted-foreground">
+                    {blog.content}
+                  </p>
+                  <div className="flex items-center pt-2">
+                    <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
+                    <span className="text-xs text-muted-foreground">
+                      {new Date(blog.createdAt).toLocaleDateString("en-US", {
+                        weekday: "long",
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="flex gap-4">
-            <Link className="flex flex-1 justify-center" href={"#"}>
-              <Icons.gitHub
-                className={cn(
-                  buttonVariants({ variant: "link", size: "icon" }),
-                  "text-background",
-                )}
-              />
-            </Link>
-            <Link className="flex flex-1 justify-center" href={"#"}>
-              <Icons.linkedIn
-                className={cn(
-                  buttonVariants({ variant: "link", size: "icon" }),
-                  "text-background",
-                )}
-              />
-            </Link>
-          </div>
-        </div>
-        <p className="mt-8 text-lg">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit vitae
-          ea non corrupti eveniet quibusdam, dolorem pariatur perferendis
-          recusandae illum minima aut eligendi neque tenetur est suscipit
-          laborum odio consectetur.
-        </p>
-      </div>
-    </section>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 
-export { Profile };
+export default Profile;
