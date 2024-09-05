@@ -7,6 +7,7 @@ import { env } from "@/env";
 import { authOptions } from "@/server/auth";
 import { type BlogProps } from "@/types/types";
 import { getServerSession } from "next-auth";
+import Image from "next/image";
 import Link from "next/link";
 
 const getBlog = async (id: string) => {
@@ -74,7 +75,13 @@ const Blog = async ({ params }: { params: { id: string } }) => {
           </div>
         </div>
         <div className="not-prose relative my-10 overflow-hidden rounded-2xl first:mt-0 last:mb-0 [a:not(:first-child)>&]:mt-10 [a:not(:last-child)>&]:mb-10 [figure>&]:my-0">
-          <img src={blog.image} alt="Uploaded" className="h-auto w-full" />
+          <Image
+            width={1920}
+            height={1080}
+            src={blog.image}
+            alt="Uploaded"
+            className="h-auto w-full"
+          />
           <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-slate-900/10 dark:ring-white/10"></div>
         </div>
         <Editor editable={false} initialValue={blog.content} />

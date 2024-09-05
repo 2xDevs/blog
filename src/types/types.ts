@@ -19,8 +19,8 @@ export type BlogProps = {
   image: string;
   author: Author;
   authorId: string;
-  createdAt: string;
-  updatedAt?: string;
+  createdAt: Date;
+  updatedAt?: Date;
 };
 
 interface Author {

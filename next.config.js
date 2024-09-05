@@ -13,11 +13,7 @@ const config = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "picsum.photos",
-      },
-      {
-        protocol: "https",
-        hostname: "lh3.googleusercontent.com",
+        hostname: "**",
       },
     ],
   },
