@@ -3,13 +3,14 @@ import { BackButton } from "@/components/BackButton";
 import Editor from "@/components/editor/advanced-editor";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { buttonVariants } from "@/components/ui/button";
+import { env } from "@/env";
 import { authOptions } from "@/server/auth";
 import { type BlogProps } from "@/types/types";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 
 const getBlog = async (id: string) => {
-  const responce = await fetch(`http://localhost:3000/api/blogs/${id}`, {
+  const responce = await fetch(`${env.NEXT_API_URL}/api/blogs/${id}`, {
     next: {
       revalidate: 60,
     },
