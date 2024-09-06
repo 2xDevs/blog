@@ -5,51 +5,43 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Icons } from "@/components/Icons";
 import { toast } from "sonner";
-import { useState, type CSSProperties, type MouseEvent } from "react";
+import {
+  useEffect,
+  useState,
+  type CSSProperties,
+  type MouseEvent,
+} from "react";
 import { signIn } from "next-auth/react";
+import Particles from "@/components/ui/particles";
+import { useTheme } from "next-themes";
+import { Logo } from "@/components/Logo";
 
 const Signin = () => {
-  const [transformStyle, setTransformStyle] = useState<CSSProperties>({});
+  const { theme } = useTheme();
+  const [color, setColor] = useState("#ffffff");
 
-  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
-    // const svg = event.currentTarget;
-    const x = event.clientX;
-    const y = event.clientY;
-
-    const middleX = window.innerWidth / 2;
-    const middleY = window.innerHeight / 2;
-
-    const rotateX = -1 * ((x - middleX) / middleX) * 15;
-    const rotateY = ((y - middleY) / middleY) * 15;
-
-    setTransformStyle({
-      transform: `rotateX(${rotateY}deg) rotateY(${rotateX}deg)`,
-      transition: "transform 0.1s",
-      transformStyle: "preserve-3d",
-    });
-  };
-
-  const handleMouseLeave = () => {
-    setTransformStyle({
-      transform: `rotateX(0deg) rotateY(0deg)`,
-    });
-  };
+  useEffect(() => {
+    setColor(theme === "dark" ? "#ffffff" : "#000000");
+  }, [theme]);
 
   return (
-    <div onMouseMove={handleMouseMove} className="flex h-[calc(100dvh-72px)]">
-      <div className="flex flex-1 items-center justify-center">
-        <div
-          className="animate-signin-svg"
-          onMouseLeave={handleMouseLeave}
-          style={transformStyle}
-        >
-          <Icons.logo className="" />
+    <>
+      <div className="relative flex h-[calc(100dvh-80px)]">
+        <Particles
+          className="absolute inset-0 -z-10"
+          quantity={100}
+          ease={80}
+          color={color}
+          refresh
+        />
+        <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-center">
+          <Logo />
+        </div>
+        <div className="flex flex-1 items-center justify-center">
+          <SigninForm />
         </div>
       </div>
-      <div className="flex flex-1 items-center justify-center">
-        <SigninForm />
-      </div>
-    </div>
+    </>
   );
 };
 

@@ -1,6 +1,7 @@
 import { Blogs } from "@/components/Blogs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import SparklesText from "@/components/ui/sparkle-text";
 import { env } from "@/env";
 import { type BlogBase } from "@/types/types";
 import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
@@ -25,8 +26,9 @@ export default async function HomePage() {
     <main className="">
       <section id="Hero" className="max-w-6xl px-4 py-16 sm:mx-auto">
         <div className="mx-auto max-w-2xl space-y-6">
-          <h1 className="animate-fade-in text-center text-display-4 font-bold lg:text-5xl">
-            Latest Blogs
+          <h1 className="animate-fade-in text-center text-display-1 font-extrabold lg:text-6xl">
+            Latest{" "}
+            <SparklesText className="text-display-1 lg:text-6xl" text="Blogs" />
           </h1>
           <h2 className="animate-fade-in text-center text-xl font-medium text-secondary-foreground opacity-0 [animation-delay:100ms]">
             Join us on our coding journey! Discover tips, real-world

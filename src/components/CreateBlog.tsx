@@ -86,14 +86,14 @@ export const CreateBlog = () => {
           <BackButton />
           <Button onClick={handleSaveBlog}>Create</Button>
         </div>
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto w-full max-w-3xl">
           <div className="space-y-4">
             <textarea
               ref={textareaRef}
               value={title}
               onChange={handleTitleChange}
               rows={1}
-              className="w-full resize-none overflow-hidden border-0 bg-transparent text-display-5 font-bold text-foreground focus:ring-0 focus-visible:outline-none lg:text-4xl"
+              className="w-full resize-none overflow-hidden border-0 bg-transparent text-display-5 font-black font-bold text-foreground focus:ring-0 focus-visible:outline-none lg:text-4xl"
               placeholder="Untitled"
             />
             <div className="flex gap-2">

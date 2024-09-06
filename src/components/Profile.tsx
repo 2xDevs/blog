@@ -75,7 +75,7 @@ const Profile = ({ user }: { user: UserProps }) => {
       </Card>
       <Card>
         <CardHeader>
-          <CardTitle>About Me</CardTitle>
+          <CardTitle className="text-2xl">About Me</CardTitle>
           <CardDescription>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem atque
             possimus ducimus officia perspiciatis odit doloremque perferendis
@@ -85,15 +85,21 @@ const Profile = ({ user }: { user: UserProps }) => {
       </Card>
       <Card>
         <CardHeader>
-          <CardTitle>Recent Posts</CardTitle>
+          <CardTitle className="text-2xl">Recent Posts</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             {user.blogs.map((blog) => (
-              <div key={blog.id} className="flex items-center space-x-4">
+              <Link
+                href={`/blog/${blog.id}`}
+                key={blog.id}
+                className="flex items-center space-x-4"
+              >
                 <div className="space-y-1">
-                  <h3 className="font-medium leading-none">{blog.title}</h3>
-                  <p className="line-clamp-1 text-sm text-muted-foreground">
+                  <h3 className="line-clamp-1 font-medium leading-tight">
+                    {blog.title}
+                  </h3>
+                  <p className="line-clamp-2 text-sm text-muted-foreground">
                     {blog.content}
                   </p>
                   <div className="flex items-center pt-2">
@@ -108,7 +114,7 @@ const Profile = ({ user }: { user: UserProps }) => {
                     </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </CardContent>

@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-
+const { fontFamily } = require("tailwindcss/defaultTheme");
 const config = {
   darkMode: ["class"],
   content: [
@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)", ...fontFamily.sans],
+      },
       boxShadow: {
         circle: "inset 0 0 0 2px hsl(var(--primary))",
         "equal-sm": "0 0 5px var(--tw-shadow-color)",
