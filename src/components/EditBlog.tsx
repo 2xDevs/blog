@@ -101,7 +101,7 @@ export const EditBlog = ({ InitialBlog }: { InitialBlog: BlogProps }) => {
               value={title}
               onChange={handleTitleChange}
               rows={1}
-              className="w-full resize-none overflow-hidden border-0 bg-transparent text-display-5 font-bold text-foreground focus:ring-0 focus-visible:outline-none lg:text-4xl"
+              className="w-full resize-none overflow-hidden border-0 bg-transparent text-display-5 font-extrabold text-foreground focus:ring-0 focus-visible:outline-none lg:text-4xl"
               placeholder="Untitled"
             />
             <div className="flex gap-2">

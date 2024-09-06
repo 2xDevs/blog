@@ -150,7 +150,7 @@ export const ImageUploader = ({ imageLink, onUpload }: ImageUpoaderProps) => {
         </div>
       )}
       {!imageUrl && !showUploader && (
-        <div className="my-10 mt-4 flex aspect-video w-[48rem] items-center justify-center rounded-2xl bg-accent">
+        <div className="my-10 mt-4 flex aspect-video max-w-[48rem] items-center justify-center rounded-2xl bg-accent">
           <Card className="w-full max-w-md p-6 shadow-lg">
             <h2 className="mb-4 text-2xl font-bold">Image Uploader</h2>
             <div className="space-y-4">

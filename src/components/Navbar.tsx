@@ -82,14 +82,7 @@ export const Navbar = () => {
             >
               <GitHubLogoIcon className="h-6 w-6" />
             </Link>
-            {!session?.user && (
-              <DropdownMenu>
-                <ModeToggle
-                  align="end"
-                  className="flex w-full justify-start px-2"
-                />
-              </DropdownMenu>
-            )}
+            <ModeToggle />
             {session?.user.email && (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -113,14 +106,6 @@ export const Navbar = () => {
                       Profile
                     </Link>
                   </DropdownMenuItem>
-
-                  <DropdownMenuSub>
-                    <ModeToggle
-                      user={true}
-                      align="end"
-                      className="flex w-full justify-start px-2"
-                    />
-                  </DropdownMenuSub>
 
                   <DropdownMenuItem className="p-0">
                     <Button

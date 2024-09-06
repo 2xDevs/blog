@@ -54,7 +54,7 @@ const Blog = async ({ params }: { params: { id: string } }) => {
               day: "numeric",
             })}
           </div>
-          <h1 className="text-display-5 font-semibold leading-normal lg:text-4xl">
+          <h1 className="text-fs-3 font-black leading-normal lg:text-4xl">
             {blog.title}
           </h1>
           <div className="flex gap-2">
