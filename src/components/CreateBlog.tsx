@@ -104,7 +104,7 @@ export const CreateBlog = () => {
                 <AvatarFallback>
                   {session?.user
                     .name!.split(" ")
-                    .map((word) => word.charAt(0))
+                    .map((word: string) => word.charAt(0))
                     .join("")
                     .toUpperCase()}
                 </AvatarFallback>

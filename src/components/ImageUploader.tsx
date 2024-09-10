@@ -60,20 +60,24 @@ export const ImageUploader = ({ imageLink, onUpload }: ImageUpoaderProps) => {
 
   const handleUrlUpload = () => {
     const url = urlInput;
-    const imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
-
-    // Check if URL ends with a common image extension
-    if (url && imageExtensions.some((ext) => url.toLowerCase().endsWith(ext))) {
-      setImageUrl(url);
-      onUpload(url);
-      setShowUploader(false);
-    } else {
-      toast.error("URL upload failed", {
-        description: "Please provide a valid image URL",
-        dismissible: true,
-        duration: 3000,
-      });
-    }
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        resolve(true);
+        setImageUrl(url);
+        onUpload(url);
+        setShowUploader(false);
+      }; // Image loaded successfully
+      img.onerror = () => {
+        resolve(false);
+        toast.error("URL upload failed", {
+          description: "Please provide a valid image URL",
+          dismissible: true,
+          duration: 3000,
+        });
+      }; // Error loading image
+      img.src = url;
+    });
   };
 
   return (
