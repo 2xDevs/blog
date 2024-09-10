@@ -1,6 +1,12 @@
 export type UserProps = {
   id: string;
   name: string;
+  username: string;
+  about?: string;
+  github?: string;
+  linkedin?: string;
+  portfolio?: string;
+  role: string;
   avatar: string;
   email: string;
   blogs: BlogBase[];

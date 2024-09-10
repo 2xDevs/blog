@@ -35,12 +35,12 @@ const Profile = ({ user }: { user: UserProps }) => {
                 {user.name}
               </CardTitle>
               <CardContent className="mb-3 p-0 text-primary">
-                @{user.name.split(" ")[0]}
+                @{user.username}
               </CardContent>
               <div className="mb-4 flex justify-center space-x-4 sm:justify-start">
                 <Button variant="outline" size="icon" asChild>
                   <Link
-                    href={"/"}
+                    href={user.github || ""}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="GitHub Profile"
@@ -50,7 +50,7 @@ const Profile = ({ user }: { user: UserProps }) => {
                 </Button>
                 <Button variant="outline" size="icon" asChild>
                   <Link
-                    href={"/"}
+                    href={user.linkedin || ""}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn Profile"
@@ -93,7 +93,7 @@ const Profile = ({ user }: { user: UserProps }) => {
               <Link
                 href={`/blog/${blog.id}`}
                 key={blog.id}
-                className="flex items-center space-x-4"
+                className="flex items-center space-x-4 p-2 hover:bg-muted sm:rounded-2xl"
               >
                 <div className="space-y-1">
                   <h3 className="line-clamp-1 font-medium leading-tight">

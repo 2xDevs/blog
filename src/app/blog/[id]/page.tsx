@@ -77,7 +77,7 @@ const Blog = async ({ params }: { params: { id: string } }) => {
           </div>
         </div>
         <div className="not-prose relative my-10 overflow-hidden rounded-2xl first:mt-0 last:mb-0 [a:not(:first-child)>&]:mt-10 [a:not(:last-child)>&]:mb-10 [figure>&]:my-0">
-          <Image
+          <img
             width={1920}
             height={1080}
             src={blog.image}
