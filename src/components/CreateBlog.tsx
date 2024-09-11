@@ -93,7 +93,7 @@ export const CreateBlog = () => {
               value={title}
               onChange={handleTitleChange}
               rows={1}
-              className="w-full resize-none overflow-hidden border-0 bg-transparent text-display-5 font-black font-bold text-foreground focus:ring-0 focus-visible:outline-none lg:text-4xl"
+              className="w-full resize-none overflow-hidden border-0 bg-transparent text-display-5 font-bold text-foreground focus:ring-0 focus-visible:outline-none lg:text-4xl"
               placeholder="Untitled"
             />
             <div className="flex gap-2">
@@ -104,7 +104,7 @@ export const CreateBlog = () => {
                 <AvatarFallback>
                   {session?.user
                     .name!.split(" ")
-                    .map((word) => word.charAt(0))
+                    .map((word: string) => word.charAt(0))
                     .join("")
                     .toUpperCase()}
                 </AvatarFallback>

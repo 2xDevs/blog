@@ -8,11 +8,11 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSub,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { GitHubLogoIcon, PlusIcon } from "@radix-ui/react-icons";
+import { GitHubLogoIcon, PersonIcon, PlusIcon } from "@radix-ui/react-icons";
+import { LogOutIcon } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
@@ -103,6 +103,7 @@ export const Navbar = () => {
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem asChild>
                     <Link className="w-full" href={`/${session.user.id}`}>
+                      <PersonIcon className="mr-2 h-4 w-4" />
                       Profile
                     </Link>
                   </DropdownMenuItem>
@@ -111,8 +112,9 @@ export const Navbar = () => {
                     <Button
                       onClick={async () => await signOut()}
                       variant={"ghost"}
-                      className="h-fit w-full justify-start py-1.5 pl-3 font-normal hover:bg-destructive hover:text-destructive-foreground"
+                      className="h-fit w-full justify-start py-1.5 pl-2 font-normal hover:bg-destructive hover:text-destructive-foreground"
                     >
+                      <LogOutIcon className="mr-2 h-4 w-4" />
                       Signout
                     </Button>
                   </DropdownMenuItem>

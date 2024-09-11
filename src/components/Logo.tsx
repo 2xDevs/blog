@@ -46,7 +46,7 @@ export const Logo = () => {
   const [color, setColor] = useState("#fff");
   useEffect(() => {
     setColor(theme === "dark" ? "#fff" : "#000");
-  });
+  }, [theme]);
   return (
     <div className="z-50 w-4/5 xl:w-3/5">
       <motion.svg

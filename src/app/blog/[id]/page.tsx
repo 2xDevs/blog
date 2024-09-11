@@ -8,7 +8,6 @@ import { authOptions } from "@/server/auth";
 import { type BlogProps } from "@/types/types";
 import { CalendarDays } from "lucide-react";
 import { getServerSession } from "next-auth";
-import Image from "next/image";
 import Link from "next/link";
 
 const getBlog = async (id: string) => {
@@ -43,7 +42,7 @@ const Blog = async ({ params }: { params: { id: string } }) => {
         )}
       </div>
 
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-3xl pb-16">
         <div className="space-y-4">
           <div className="flex text-xs text-muted-foreground">
             <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
@@ -57,7 +56,7 @@ const Blog = async ({ params }: { params: { id: string } }) => {
           <h1 className="text-fs-3 font-black leading-normal lg:text-4xl">
             {blog.title}
           </h1>
-          <div className="flex gap-2">
+          <Link href={`/${blog.authorId}`} className="flex w-fit gap-2">
             <Avatar>
               <AvatarImage src={blog.author.avatar} />
               <AvatarFallback>
@@ -70,14 +69,12 @@ const Blog = async ({ params }: { params: { id: string } }) => {
             </Avatar>
             <div className="">
               <p className="text-sm font-semibold">{blog.author.name}</p>
-              <Link href={`/${blog.authorId}`} className="text-sm text-primary">
-                @{blog.author.name.split(" ")[0]}
-              </Link>
+              <p className="text-sm text-primary">@{blog.author.username}</p>
             </div>
-          </div>
+          </Link>
         </div>
         <div className="not-prose relative my-10 overflow-hidden rounded-2xl first:mt-0 last:mb-0 [a:not(:first-child)>&]:mt-10 [a:not(:last-child)>&]:mb-10 [figure>&]:my-0">
-          <Image
+          <img
             width={1920}
             height={1080}
             src={blog.image}

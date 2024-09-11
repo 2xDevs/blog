@@ -12,7 +12,7 @@ export async function GET(
       where: { id },
       include: {
         author: {
-          select: { name: true, avatar: true },
+          select: { name: true, avatar: true, username: true },
         },
       },
     });

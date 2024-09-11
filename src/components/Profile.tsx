@@ -11,7 +11,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
-import { BookOpenIcon, CalendarDays, ThumbsUp } from "lucide-react";
+import { BookOpenIcon, CalendarDays, GlobeIcon, ThumbsUp } from "lucide-react";
 import { type UserProps } from "@/types/types";
 import Link from "next/link";
 
@@ -35,12 +35,12 @@ const Profile = ({ user }: { user: UserProps }) => {
                 {user.name}
               </CardTitle>
               <CardContent className="mb-3 p-0 text-primary">
-                @{user.name.split(" ")[0]}
+                @{user.username}
               </CardContent>
               <div className="mb-4 flex justify-center space-x-4 sm:justify-start">
                 <Button variant="outline" size="icon" asChild>
                   <Link
-                    href={"/"}
+                    href={user.github ?? ""}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="GitHub Profile"
@@ -50,12 +50,22 @@ const Profile = ({ user }: { user: UserProps }) => {
                 </Button>
                 <Button variant="outline" size="icon" asChild>
                   <Link
-                    href={"/"}
+                    href={user.linkedin ?? ""}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn Profile"
                   >
                     <LinkedInLogoIcon className="h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button variant="outline" size="icon" asChild>
+                  <Link
+                    href={user.portfolio ?? ""}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn Profile"
+                  >
+                    <GlobeIcon className="h-5 w-5" />
                   </Link>
                 </Button>
               </div>
@@ -77,15 +87,15 @@ const Profile = ({ user }: { user: UserProps }) => {
         <CardHeader>
           <CardTitle className="text-2xl">About Me</CardTitle>
           <CardDescription>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem atque
-            possimus ducimus officia perspiciatis odit doloremque perferendis
-            consectetur qui esse? Incidunt itaque deserunt aperiam modi.
+            {user.about === null
+              ? "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, molestiae quod, dignissimos eaque quis dolor sequi soluta alias vero in accusantium veritatis magni, quidem obcaecati et."
+              : user.about}
           </CardDescription>
         </CardHeader>
       </Card>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Recent Posts</CardTitle>
+          <CardTitle className="text-2xl">Recent Blogs</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -93,7 +103,7 @@ const Profile = ({ user }: { user: UserProps }) => {
               <Link
                 href={`/blog/${blog.id}`}
                 key={blog.id}
-                className="flex items-center space-x-4"
+                className="flex items-center space-x-4 p-2 hover:bg-muted sm:rounded-2xl"
               >
                 <div className="space-y-1">
                   <h3 className="line-clamp-1 font-medium leading-tight">
@@ -117,6 +127,7 @@ const Profile = ({ user }: { user: UserProps }) => {
               </Link>
             ))}
           </div>
+          {!user.blogCount && <div className="text-center">No Blogs</div>}
         </CardContent>
       </Card>
     </div>
