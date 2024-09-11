@@ -5,12 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Icons } from "@/components/Icons";
 import { toast } from "sonner";
-import {
-  useEffect,
-  useState,
-  type CSSProperties,
-  type MouseEvent,
-} from "react";
+import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import Particles from "@/components/ui/particles";
 import { useTheme } from "next-themes";

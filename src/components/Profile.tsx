@@ -40,7 +40,7 @@ const Profile = ({ user }: { user: UserProps }) => {
               <div className="mb-4 flex justify-center space-x-4 sm:justify-start">
                 <Button variant="outline" size="icon" asChild>
                   <Link
-                    href={user.github || ""}
+                    href={user.github ?? ""}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="GitHub Profile"
@@ -50,7 +50,7 @@ const Profile = ({ user }: { user: UserProps }) => {
                 </Button>
                 <Button variant="outline" size="icon" asChild>
                   <Link
-                    href={user.linkedin || ""}
+                    href={user.linkedin ?? ""}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn Profile"
@@ -60,7 +60,7 @@ const Profile = ({ user }: { user: UserProps }) => {
                 </Button>
                 <Button variant="outline" size="icon" asChild>
                   <Link
-                    href={user.portfolio || ""}
+                    href={user.portfolio ?? ""}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn Profile"

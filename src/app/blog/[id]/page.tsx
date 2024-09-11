@@ -8,7 +8,6 @@ import { authOptions } from "@/server/auth";
 import { type BlogProps } from "@/types/types";
 import { CalendarDays } from "lucide-react";
 import { getServerSession } from "next-auth";
-import Image from "next/image";
 import Link from "next/link";
 
 const getBlog = async (id: string) => {
