@@ -11,7 +11,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
-import { BookOpenIcon, CalendarDays, ThumbsUp } from "lucide-react";
+import { BookOpenIcon, CalendarDays, GlobeIcon, ThumbsUp } from "lucide-react";
 import { type UserProps } from "@/types/types";
 import Link from "next/link";
 
@@ -58,6 +58,16 @@ const Profile = ({ user }: { user: UserProps }) => {
                     <LinkedInLogoIcon className="h-5 w-5" />
                   </Link>
                 </Button>
+                <Button variant="outline" size="icon" asChild>
+                  <Link
+                    href={user.portfolio || ""}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn Profile"
+                  >
+                    <GlobeIcon className="h-5 w-5" />
+                  </Link>
+                </Button>
               </div>
               <div className="flex justify-center space-x-4 sm:justify-start">
                 <Badge variant="secondary" className="px-3 py-1 text-sm">
@@ -77,15 +87,15 @@ const Profile = ({ user }: { user: UserProps }) => {
         <CardHeader>
           <CardTitle className="text-2xl">About Me</CardTitle>
           <CardDescription>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem atque
-            possimus ducimus officia perspiciatis odit doloremque perferendis
-            consectetur qui esse? Incidunt itaque deserunt aperiam modi.
+            {user.about === null
+              ? "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, molestiae quod, dignissimos eaque quis dolor sequi soluta alias vero in accusantium veritatis magni, quidem obcaecati et."
+              : user.about}
           </CardDescription>
         </CardHeader>
       </Card>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Recent Posts</CardTitle>
+          <CardTitle className="text-2xl">Recent Blogs</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -117,6 +127,7 @@ const Profile = ({ user }: { user: UserProps }) => {
               </Link>
             ))}
           </div>
+          {!user.blogCount && <div className="text-center">No Blogs</div>}
         </CardContent>
       </Card>
     </div>

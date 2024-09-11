@@ -32,6 +32,7 @@ export type BlogProps = {
 };
 
 interface Author {
+  username: string;
   name: string;
   avatar: string;
 }

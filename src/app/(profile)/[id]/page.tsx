@@ -10,7 +10,6 @@ const getUser = async (id: string) => {
 const ProfilePage = async ({ params }: { params: { id: string } }) => {
   const id = params.id;
   const user = await getUser(id);
-
   return <Profile user={user} />;
 };
 
