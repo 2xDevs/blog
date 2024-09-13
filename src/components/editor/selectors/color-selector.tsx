@@ -139,13 +139,13 @@ export const ColorSelector = ({ open, onOpenChange }: ColorSelectorProps) => {
               key={index}
               onSelect={() => {
                 editor.commands.unsetColor();
-                // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-                name !== "Default" &&
+                if (name !== "Default") {
                   editor
                     .chain()
                     .focus()
                     .setColor(color || "")
                     .run();
+                }
                 onOpenChange(false);
               }}
               className="flex cursor-pointer items-center justify-between px-2 py-1 text-sm hover:bg-accent"
@@ -171,9 +171,9 @@ export const ColorSelector = ({ open, onOpenChange }: ColorSelectorProps) => {
               key={index}
               onSelect={() => {
                 editor.commands.unsetHighlight();
-                // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-                name !== "Default" &&
+                if (name !== "Default") {
                   editor.chain().focus().setHighlight({ color }).run();
+                }
                 onOpenChange(false);
               }}
               className="flex cursor-pointer items-center justify-between px-2 py-1 text-sm hover:bg-accent"
