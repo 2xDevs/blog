@@ -32,7 +32,7 @@ const Blog = async ({ params }: { params: { id: string } }) => {
     return <div> Error fetching blog or no blod available with id: {id} </div>;
   }
   return (
-    <div className="mx-auto mb-8 flex max-w-6xl flex-col space-y-4 px-4 pt-8 sm:px-8">
+    <div className="mx-auto mb-8 max-w-6xl space-y-4 px-4 pt-8 sm:px-8">
       <div className="mb-4 flex max-h-fit items-center justify-between">
         <BackButton />
         {blog.authorId === session?.user.id && (

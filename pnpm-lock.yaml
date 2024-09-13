@@ -79,7 +79,7 @@ importers:
         version: 0.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       novel:
         specifier: ^0.5.0
-        version: 0.5.0(@tiptap/extension-code-block@2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))(@tiptap/pm@2.6.6))(@types/react@18.3.4)(highlight.js@11.10.0)(lowlight@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 0.5.0(@tiptap/extension-code-block@2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))(@tiptap/pm@2.6.6))(@types/react@18.3.4)(highlight.js@11.9.0)(lowlight@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1831,10 +1831,6 @@ packages:
   hast-util-whitespace@2.0.1:
     resolution: {integrity: sha512-nAxA0v8+vXSBDt3AnRUNjyRIQ0rD+ntpbAp4LnPkumc5M9yUbSMa4XDU9Q6etY4f1Wp4bNgvc1yjiZtsTTrSng==}
 
-  highlight.js@11.10.0:
-    resolution: {integrity: sha512-SYVnVFswQER+zu1laSya563s+F8VDGt7o35d4utbamowvUNLLMovFqwCLSocpZTz3MgaSRA1IbqRWZv97dtErQ==}
-    engines: {node: '>=12.0.0'}
-
   highlight.js@11.9.0:
     resolution: {integrity: sha512-fJ7cW7fQGCYAkgv4CPfwFHrfd/cLS4Hau96JuJ+ZTOWhjnhoeN1ub1tFmALm/+lW5z4WCAuAV9bm05AP0mS6Gw==}
     engines: {node: '>=12.0.0'}
@@ -2973,8 +2969,8 @@ packages:
   tippy.js@6.3.7:
     resolution: {integrity: sha512-E1d3oP2emgJ9dRQZdf3Kkn0qJgI6ZLpyS5z6ZkY1DF3kaQaBsGZsndEpHwx+eC+tYM41HaSNvNtLx8tU57FzTQ==}
 
-  tiptap-extension-global-drag-handle@0.1.12:
-    resolution: {integrity: sha512-hU3HlsIqebhKwgAmGvRN+9KXAkH6t/q9pX90Bfw5AcP1SK1MOYJpTCv2zE4efJMvIpn3eTQDuLsSvaoEKqsl0g==}
+  tiptap-extension-global-drag-handle@0.1.13:
+    resolution: {integrity: sha512-vbIkVLSYW8AC7BS5Xi0boS99TgUT91MY98QC91H6IZMGnSaF4owZBxDRRgijgBNsNykUyekyIFT+m6pmawdENQ==}
 
   tiptap-markdown@0.8.10:
     resolution: {integrity: sha512-iDVkR2BjAqkTDtFX0h94yVvE2AihCXlF0Q7RIXSJPRSR5I0PA1TMuAg6FHFpmqTn4tPxJ0by0CK7PUMlnFLGEQ==}
@@ -3898,12 +3894,12 @@ snapshots:
       '@tiptap/core': 2.6.6(@tiptap/pm@2.6.6)
       '@tiptap/pm': 2.6.6
 
-  '@tiptap/extension-code-block-lowlight@2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))(@tiptap/extension-code-block@2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))(@tiptap/pm@2.6.6))(@tiptap/pm@2.6.6)(highlight.js@11.10.0)(lowlight@3.1.0)':
+  '@tiptap/extension-code-block-lowlight@2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))(@tiptap/extension-code-block@2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))(@tiptap/pm@2.6.6))(@tiptap/pm@2.6.6)(highlight.js@11.9.0)(lowlight@3.1.0)':
     dependencies:
       '@tiptap/core': 2.6.6(@tiptap/pm@2.6.6)
       '@tiptap/extension-code-block': 2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))(@tiptap/pm@2.6.6)
       '@tiptap/pm': 2.6.6
-      highlight.js: 11.10.0
+      highlight.js: 11.9.0
       lowlight: 3.1.0
 
   '@tiptap/extension-code-block@2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))(@tiptap/pm@2.6.6)':
@@ -4726,8 +4722,8 @@ snapshots:
       '@typescript-eslint/parser': 7.2.0(eslint@8.57.0)(typescript@5.5.4)
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0))(eslint@8.57.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.0)
+      eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@8.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)
       eslint-plugin-jsx-a11y: 6.9.0(eslint@8.57.0)
       eslint-plugin-react: 7.35.0(eslint@8.57.0)
       eslint-plugin-react-hooks: 4.6.2(eslint@8.57.0)
@@ -4746,37 +4742,47 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0))(eslint@8.57.0):
+  eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0):
     dependencies:
       '@nolyfill/is-core-module': 1.0.39
       debug: 4.3.6
       enhanced-resolve: 5.17.1
       eslint: 8.57.0
-      eslint-module-utils: 2.8.2(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
+      eslint-module-utils: 2.8.2(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0))(eslint@8.57.0)
       fast-glob: 3.3.2
       get-tsconfig: 4.7.6
       is-bun-module: 1.1.0
       is-glob: 4.0.3
     optionalDependencies:
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@8.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)
     transitivePeerDependencies:
       - '@typescript-eslint/parser'
       - eslint-import-resolver-node
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-module-utils@2.8.2(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0):
+  eslint-module-utils@2.8.2(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0))(eslint@8.57.0):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
       '@typescript-eslint/parser': 7.2.0(eslint@8.57.0)(typescript@5.5.4)
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0))(eslint@8.57.0)
+      eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0)
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.0):
+  eslint-module-utils@2.8.2(@typescript-eslint/parser@8.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint@8.57.0):
+    dependencies:
+      debug: 3.2.7
+    optionalDependencies:
+      '@typescript-eslint/parser': 8.2.0(eslint@8.57.0)(typescript@5.5.4)
+      eslint: 8.57.0
+      eslint-import-resolver-node: 0.3.9
+    transitivePeerDependencies:
+      - supports-color
+
+  eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0):
     dependencies:
       array-includes: 3.1.8
       array.prototype.findlastindex: 1.2.5
@@ -4786,7 +4792,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.8.2(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
+      eslint-module-utils: 2.8.2(@typescript-eslint/parser@8.2.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint@8.57.0)
       hasown: 2.0.2
       is-core-module: 2.15.1
       is-glob: 4.0.3
@@ -4797,7 +4803,7 @@ snapshots:
       semver: 6.3.1
       tsconfig-paths: 3.15.0
     optionalDependencies:
-      '@typescript-eslint/parser': 7.2.0(eslint@8.57.0)(typescript@5.5.4)
+      '@typescript-eslint/parser': 8.2.0(eslint@8.57.0)(typescript@5.5.4)
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
@@ -5102,8 +5108,6 @@ snapshots:
       function-bind: 1.1.2
 
   hast-util-whitespace@2.0.1: {}
-
-  highlight.js@11.10.0: {}
 
   highlight.js@11.9.0: {}
 
@@ -5648,12 +5652,12 @@ snapshots:
 
   normalize-path@3.0.0: {}
 
-  novel@0.5.0(@tiptap/extension-code-block@2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))(@tiptap/pm@2.6.6))(@types/react@18.3.4)(highlight.js@11.10.0)(lowlight@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  novel@0.5.0(@tiptap/extension-code-block@2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))(@tiptap/pm@2.6.6))(@types/react@18.3.4)(highlight.js@11.9.0)(lowlight@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@radix-ui/react-slot': 1.1.0(@types/react@18.3.4)(react@18.3.1)
       '@tiptap/core': 2.6.6(@tiptap/pm@2.6.6)
       '@tiptap/extension-character-count': 2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))(@tiptap/pm@2.6.6)
-      '@tiptap/extension-code-block-lowlight': 2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))(@tiptap/extension-code-block@2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))(@tiptap/pm@2.6.6))(@tiptap/pm@2.6.6)(highlight.js@11.10.0)(lowlight@3.1.0)
+      '@tiptap/extension-code-block-lowlight': 2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))(@tiptap/extension-code-block@2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))(@tiptap/pm@2.6.6))(@tiptap/pm@2.6.6)(highlight.js@11.9.0)(lowlight@3.1.0)
       '@tiptap/extension-color': 2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))(@tiptap/extension-text-style@2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6)))
       '@tiptap/extension-highlight': 2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))
       '@tiptap/extension-horizontal-rule': 2.6.6(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))(@tiptap/pm@2.6.6)
@@ -5679,7 +5683,7 @@ snapshots:
       react-moveable: 0.56.0
       react-tweet: 3.2.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       tippy.js: 6.3.7
-      tiptap-extension-global-drag-handle: 0.1.12
+      tiptap-extension-global-drag-handle: 0.1.13
       tiptap-markdown: 0.8.10(@tiptap/core@2.6.6(@tiptap/pm@2.6.6))
       tunnel-rat: 0.1.2(@types/react@18.3.4)(react@18.3.1)
     transitivePeerDependencies:
@@ -6416,7 +6420,7 @@ snapshots:
     dependencies:
       '@popperjs/core': 2.11.8
 
-  tiptap-extension-global-drag-handle@0.1.12: {}
+  tiptap-extension-global-drag-handle@0.1.13: {}
 
   tiptap-markdown@0.8.10(@tiptap/core@2.6.6(@tiptap/pm@2.6.6)):
     dependencies:
